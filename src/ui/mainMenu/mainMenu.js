@@ -6,7 +6,7 @@ angular.module('Ironbane.ui.mainMenu', [
         '$stateProvider',
         function($stateProvider) {
             $stateProvider.state('mainMenu', {
-                url: '/',
+                url: '',
                 templateUrl: '/templates/ui/mainMenu/mainMenu.html',
                 controller: ['$scope',
                     function($scope) {
