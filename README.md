@@ -1,3 +1,6 @@
 #Ironbane 2 - Client
 
-First! :P
+## Installation
+- run ``npm install``
+- run ``gulp``
+- load public/index.html
