@@ -10,6 +10,7 @@
     "maxcomplexity":  false,
     "maxdepth": false,
     "laxbreak": true,
+    "laxcomma": true,
     "predef": [
         "_",
         "angular",

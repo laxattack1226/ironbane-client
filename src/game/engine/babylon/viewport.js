@@ -1,5 +1,5 @@
-angular.module('Ironbane.game.viewport', [
-    'Ironbane.game.engine'
+angular.module('Ironbane.game.engine.Babylon.viewport', [
+    'Ironbane.game.engine.Babylon.Game'
 ])
     .directive('viewport', [
         '$window',
@@ -7,12 +7,14 @@ angular.module('Ironbane.game.viewport', [
         function($window, Game) {
             return {
                 restrict: 'EA',
+                template: '<canvas></canvas>',
                 link: function(scope, el, attrs) {
-                    var ironbane = new Game();
+                    var ironbane = new Game(el.find('canvas')[0]);
 
-                    $window.addEventListener('resize', ironbane.onWindowResize, false);
-
-                    el.append(ironbane.renderer.domElement);
+                    // Watch for browser/canvas resize events
+                    $window.addEventListener("resize", function() {
+                        ironbane.engine.resize();
+                    });
 
                     ironbane.start();
 

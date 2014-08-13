@@ -1,5 +1,5 @@
-angular.module('Ironbane.game.engine', [
-    'Ironbane.game.THREE'
+angular.module('Ironbane.game.engine.THREE.Game', [
+    'Ironbane.game.engine.THREE'
 ])
     .factory('Game', [
         'THREE',
