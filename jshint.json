@@ -1,0 +1,18 @@
+{
+    "browser": true,
+    "plusplus": true,
+    "white": true,
+    "nomen": true,
+    "strict": false,
+    "regexp": true,
+    "plusplus": false,
+    "maxstatements": false,
+    "maxcomplexity":  false,
+    "maxdepth": false,
+    "laxbreak": true,
+    "predef": [
+        "_",
+        "angular",
+        "window"
+    ]
+}

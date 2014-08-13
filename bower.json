@@ -1,0 +1,24 @@
+{
+  "name": "ironbane-client",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ironbane/ironbane-client",
+  "authors": [
+    "Ironbane Team"
+  ],
+  "description": "bower config for Ironbane client",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.22",
+    "threejs": "*",
+    "angular-ui-router": "~0.2.10",
+    "underscore": "~1.6.0"
+  }
+}
