@@ -1,11 +1,14 @@
-// wrapper for THREE to angular
-(function(THREE, angular) {
+'use strict';
 
-    angular.module('Ironbane.game.THREE', [])
-        .service('THREE', [
-            function() {
-                return THREE;
-            }
-        ]);
+// wrapper for THREE to angular
+(function (THREE, angular) {
+
+	angular.module('Ironbane.game.THREE', [])
+		.service('THREE', [
+
+			function () {
+				return THREE;
+			}
+		]);
 
 })(window.THREE, window.angular);

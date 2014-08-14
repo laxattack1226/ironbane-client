@@ -1,6 +1,6 @@
-#Ironbane 2 - Client
+# Ironbane 2 - Client
 
 ## Installation
-- run ``npm install``
-- run ``gulp``
-- load public/index.html
+* run ``npm install -g angus``
+* run ``angus dev``
+* open ``http://localhost:9000/``

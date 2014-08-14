@@ -26,12 +26,9 @@
     <div ui-view></div>
     <viewport></viewport>
 
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="lib/underscore/underscore.js"></script>
-    <script src="lib/threejs/build/three.min.js"></script>
-    <script src="lib/Keypress/keypress-2.0.3.min.js"></script>
+    @@libScripts
 
-    <script src="js/game.js"></script>
+    <!-- include: "type": "js", "files": ["./assets/js/templates/**/*.js"] -->
+    <!-- include: "type": "js", "files": ["./assets/js/app/**/*.js"] -->
 </body>
 </html>

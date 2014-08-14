@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('Ironbane.game.engine', [
     'Ironbane.game.THREE',
     'Ironbane.game.input.InputMgr'
@@ -6,8 +8,8 @@ angular.module('Ironbane.game.engine', [
         'THREE',
         '$window',
         'InputMgr',
-        function(THREE, $window, InputMgr) {
-            var Game = function() {
+        function (THREE, $window, InputMgr) {
+            var Game = function () {
                 var game = this;
 
                 game.input = new InputMgr();
@@ -22,18 +24,18 @@ angular.module('Ironbane.game.engine', [
 
                 var geometry = new THREE.BoxGeometry(200, 200, 200);
 
-                var texture = THREE.ImageUtils.loadTexture('media/textures/crate.gif');
+                var texture = THREE.ImageUtils.loadTexture('assets/textures/crate.gif');
                 texture.anisotropy = game.renderer.getMaxAnisotropy();
 
                 var material = new THREE.MeshBasicMaterial({
                     map: texture
                 });
 
-                mesh = new THREE.Mesh(geometry, material);
+                var mesh = new THREE.Mesh(geometry, material);
                 game.scene.add(mesh);
 
-                game.start = function() {
-                    requestAnimationFrame(game.start);
+                game.start = function () {
+                    $window.requestAnimationFrame(game.start);
 
                     mesh.rotation.x += 0.005;
                     mesh.rotation.y += 0.01;
@@ -41,7 +43,7 @@ angular.module('Ironbane.game.engine', [
                     game.renderer.render(game.scene, game.camera);
                 };
 
-                game.onWindowResize = function() {
+                game.onWindowResize = function () {
                     game.camera.aspect = $window.innerWidth / $window.innerHeight;
                     game.camera.updateProjectionMatrix();
 
