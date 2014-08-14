@@ -1,12 +1,16 @@
 angular.module('Ironbane.game.engine', [
-    'Ironbane.game.THREE'
+    'Ironbane.game.THREE',
+    'Ironbane.game.input.InputMgr'
 ])
     .factory('Game', [
         'THREE',
         '$window',
-        function(THREE, $window) {
+        'InputMgr',
+        function(THREE, $window, InputMgr) {
             var Game = function() {
                 var game = this;
+
+                game.input = new InputMgr();
 
                 game.renderer = new THREE.WebGLRenderer();
                 game.renderer.setSize($window.innerWidth, $window.innerHeight);
