@@ -7,7 +7,8 @@ module.exports = {
         'http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.js',
         'https://github.com/dmauro/Keypress/archive/2.0.3.tar.gz',
         'underscore',
-        'angular-ui-router'
+        'angular-ui-router',
+        'hammerjs'
     ],
 
     port: 9000,
@@ -18,6 +19,7 @@ module.exports = {
             'angular-ui-router/release/angular-ui-router.js',
 
             'Keypress/keypress.js',
+            'hammerjs/hammer.min.js',
 
             // Bug in bower makes us read it as index.js
             // https://github.com/bower/bower/issues/561
@@ -37,6 +39,8 @@ module.exports = {
         'ngconstant',
         'ngmin',
     ],
+
+    gruntTasksIgnore: ['sass', 'sass_import_compiler'],
 
     // ngconstant will parse this object and allow you to access them in your app
     constants: {}
