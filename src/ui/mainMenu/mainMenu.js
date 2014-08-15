@@ -2,7 +2,9 @@
 
 angular.module('Ironbane.ui.mainMenu', [
     'ui.router',
-    'templates'
+    'templates',
+    // sub states
+    'Ironbane.ui.mainMenu.top'
 ])
     .config([
         '$stateProvider',

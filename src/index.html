@@ -3,27 +3,13 @@
 <head>
     <title>Ironbane 2</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        [ui-view] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #fff;
-            height: 0;
-            overflow: visible;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/ironbane.css">
 
     <base href="/">
 </head>
 <body>
 
-    <div ui-view></div>
+    <div id="ib-ui" ui-view></div>
     <viewport></viewport>
 
     @@libScripts

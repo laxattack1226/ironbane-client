@@ -29,10 +29,12 @@ angular.module('Ironbane.game.engine', [
 
                 game.input = new InputMgr();
 
+                var viewWidth = $window.innerWidth;
+                var viewHeight = $window.innerHeight - 5;
                 game.renderer = new THREE.WebGLRenderer();
-                game.renderer.setSize($window.innerWidth, $window.innerHeight);
+                game.renderer.setSize(viewWidth, viewHeight);
 
-                game.camera = new THREE.PerspectiveCamera(70, $window.innerWidth / $window.innerHeight, 1, 1000);
+                game.camera = new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 1, 1000);
                 game.camera.position.z = 400;
 
                 game.scene = new THREE.Scene();
@@ -48,7 +50,7 @@ angular.module('Ironbane.game.engine', [
 
                 var mesh = new THREE.Mesh(geometry, material);
                 game.scene.add(mesh);
-                game.world.addEntity(Crate(mesh, {
+                game.world.addEntity(new Crate(mesh, {
                     x: 10,
                     y: 0,
                     z: 0
@@ -64,10 +66,13 @@ angular.module('Ironbane.game.engine', [
                 };
 
                 game.onWindowResize = function () {
-                    game.camera.aspect = $window.innerWidth / $window.innerHeight;
+                    var viewWidth = $window.innerWidth;
+                    var viewHeight = $window.innerHeight - 5;
+
+                    game.camera.aspect = viewWidth / viewHeight;
                     game.camera.updateProjectionMatrix();
 
-                    game.renderer.setSize($window.innerWidth, $window.innerHeight);
+                    game.renderer.setSize(viewWidth, viewHeight);
                 };
             };
 
