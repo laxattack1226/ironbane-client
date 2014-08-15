@@ -2,15 +2,30 @@
 
 angular.module('Ironbane.game.engine', [
     'Ironbane.game.THREE',
-    'Ironbane.game.input.InputMgr'
+    'Ironbane.game.input.InputMgr',
+    'Ironbane.game.ces.World',
+    'Ironbane.game.systems.Spinner',
+    'Ironbane.game.systems.SceneSync',
+    'Ironbane.game.entities.Crate'
 ])
     .factory('Game', [
         'THREE',
         '$window',
         'InputMgr',
-        function (THREE, $window, InputMgr) {
+        'World',
+        'Spinner',
+        'SceneSync',
+        'Crate',
+        function (THREE, $window, InputMgr, World, Spinner, SceneSync, Crate) {
             var Game = function () {
                 var game = this;
+                // temp hack for quick debug
+                $window.game = game;
+
+                // entity system world
+                game.world = new World();
+                game.world.addSystem(Spinner);
+                game.world.addSystem(SceneSync);
 
                 game.input = new InputMgr();
 
@@ -33,12 +48,17 @@ angular.module('Ironbane.game.engine', [
 
                 var mesh = new THREE.Mesh(geometry, material);
                 game.scene.add(mesh);
+                game.world.addEntity(Crate(mesh, {
+                    x: 10,
+                    y: 0,
+                    z: 0
+                }));
 
                 game.start = function () {
                     $window.requestAnimationFrame(game.start);
 
-                    mesh.rotation.x += 0.005;
-                    mesh.rotation.y += 0.01;
+                    // TODO: get time delta
+                    game.world.update();
 
                     game.renderer.render(game.scene, game.camera);
                 };
