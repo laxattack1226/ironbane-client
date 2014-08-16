@@ -7,16 +7,16 @@ angular.module('Ironbane.game.components.position', [
         'Component',
         function (Component) {
             var Position = function (x, y, z) {
-                this.name = 'position';
+                var component = new Component();
 
-                this.x = x || 0;
-                this.y = y || 0;
-                this.z = z || 0;
+                component.name = 'position';
+
+                component.x = x || 0;
+                component.y = y || 0;
+                component.z = z || 0;
+
+                return component;
             };
-
-            Position.prototype = Object.create(Component.prototype);
-
-            Position.prototype.constructor = Position;
 
             return Position;
         }

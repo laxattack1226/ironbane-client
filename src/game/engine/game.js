@@ -51,7 +51,14 @@ angular.module('Ironbane.game.engine', [
                 var mesh = new THREE.Mesh(geometry, material);
                 game.scene.add(mesh);
                 game.world.addEntity(new Crate(mesh, {
-                    x: 10,
+                    x: -250,
+                    y: 0,
+                    z: 0
+                }));
+                var mesh2 = new THREE.Mesh(geometry, material);
+                game.scene.add(mesh2);
+                game.world.addEntity(new Crate(mesh2, {
+                    x: 250,
                     y: 0,
                     z: 0
                 }));

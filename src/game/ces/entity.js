@@ -9,7 +9,7 @@ angular.module('Ironbane.game.ces.Entity', [
             var _id = 0;
 
             var Entity = function () {
-                this.id = _id++;
+                this.id = ++_id;
 
                 this._components = {};
 

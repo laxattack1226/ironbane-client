@@ -7,16 +7,16 @@ angular.module('Ironbane.game.components.rotation', [
         'Component',
         function (Component) {
             var Rotation = function (x, y, z) {
-                this.name = 'rotation';
+                var component = new Component();
 
-                this.x = x || 0;
-                this.y = y || 0;
-                this.z = z || 0;
+                component.name = 'rotation';
+
+                component.x = x || 0;
+                component.y = y || 0;
+                component.z = z || 0;
+
+                return component;
             };
-
-            Rotation.prototype = Object.create(Component.prototype);
-
-            Rotation.prototype.constructor = Rotation;
 
             return Rotation;
         }

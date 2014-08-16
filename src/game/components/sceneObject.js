@@ -7,14 +7,14 @@ angular.module('Ironbane.game.components.sceneObject', [
         'Component',
         function (Component) {
             var SceneObject = function (sceneObject) {
-                this.name = 'sceneObject';
+                var component = new Component();
 
-                this.sceneObject = sceneObject;
+                component.name = 'sceneObject';
+
+                component.sceneObject = sceneObject;
+
+                return component;
             };
-
-            SceneObject.prototype = Object.create(Component.prototype);
-
-            SceneObject.prototype.constructor = SceneObject;
 
             return SceneObject;
         }

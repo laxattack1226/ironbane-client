@@ -5,32 +5,34 @@
 angular.module('Ironbane.game.input.InputMgr', [
 
 ])
-    .run(['$window', function ($window) {
-        // shims
-        var mouseEventPrototype = $window.MouseEvent.prototype;
+    .run(['$window',
+        function ($window) {
+            // shims
+            var mouseEventPrototype = $window.MouseEvent.prototype;
 
-        if (!('movementX' in mouseEventPrototype)) {
-            Object.defineProperty(mouseEventPrototype, 'movementX', {
-                enumerable: true,
-                configurable: false,
-                writeable: false,
-                get: function () {
-                    return this.webkitMovementX || this.mozMovementX || 0;
-                }
-            });
-        }
+            if (!('movementX' in mouseEventPrototype)) {
+                Object.defineProperty(mouseEventPrototype, 'movementX', {
+                    enumerable: true,
+                    configurable: false,
+                    writeable: false,
+                    get: function () {
+                        return this.webkitMovementX || this.mozMovementX || 0;
+                    }
+                });
+            }
 
-        if (!('movementY' in mouseEventPrototype)) {
-            Object.defineProperty(mouseEventPrototype, 'movementY', {
-                enumerable: true,
-                configurable: false,
-                writeable: false,
-                get: function () {
-                    return this.webkitMovementY || this.mozMovementY || 0;
-                }
-            });
+            if (!('movementY' in mouseEventPrototype)) {
+                Object.defineProperty(mouseEventPrototype, 'movementY', {
+                    enumerable: true,
+                    configurable: false,
+                    writeable: false,
+                    get: function () {
+                        return this.webkitMovementY || this.mozMovementY || 0;
+                    }
+                });
+            }
         }
-    }])
+    ])
     .factory('InputMgr', [
         '$log',
         '$window',
@@ -65,6 +67,10 @@ angular.module('Ironbane.game.input.InputMgr', [
                         deltaY: ev.movementY
                     };
                 });
+
+                $window.addEventListener('contextmenu', function (event) {
+                    event.preventDefault();
+                }, false);
             };
 
             return InputMgr;
