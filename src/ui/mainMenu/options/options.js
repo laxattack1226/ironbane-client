@@ -8,7 +8,7 @@ angular.module('Ironbane.ui.mainMenu.options', [
         '$stateProvider',
         function ($stateProvider) {
             $stateProvider.state('mainMenu.options', {
-                templateUrl: '/templates/ui/mainMenu/options/options.tpl.html',
+                templateUrl: 'ui/mainMenu/options/options.tpl.html',
                 controller: ['$scope', '$state', '$log',
                     function ($scope, $state, $log) {
                         $scope.fullscreen = function() {

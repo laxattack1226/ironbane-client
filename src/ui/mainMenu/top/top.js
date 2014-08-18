@@ -8,7 +8,7 @@ angular.module('Ironbane.ui.mainMenu.top', [
         '$stateProvider',
         function ($stateProvider) {
             $stateProvider.state('mainMenu.top', {
-                templateUrl: '/templates/ui/mainMenu/top/top.tpl.html',
+                templateUrl: 'ui/mainMenu/top/top.tpl.html',
                 controller: ['$scope', '$state',
                     function ($scope, $state) {
                         $scope.guest = function() {

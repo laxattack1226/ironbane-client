@@ -2,38 +2,36 @@
 
 // quick template for a crate entity
 angular.module('Ironbane.game.entities.Crate', [
+    'Ironbane.game.THREE',
     'Ironbane.game.ces.Entity',
-    'Ironbane.game.components.position',
-    'Ironbane.game.components.rotation',
-    'Ironbane.game.components.sceneObject',
-    'Ironbane.game.components.health'
+    'Ironbane.game.components.health',
+    'Ironbane.game.components.mesh'
 ])
     .factory('Crate', [
+        'THREE',
         'Entity',
-        'Position',
-        'Rotation',
-        'SceneObject',
         'Health',
-        function (Entity, Position, Rotation, SceneObject, Health) {
-            var Crate = function (sceneObj, pos, rot) {
-                var crate = new Entity(),
-                    p, r;
+        'Mesh',
+        function (THREE, Entity, Health, Mesh) {
+            var Crate = function (x, y, z) {
+                var crate, geometry, texture, material, mesh;
 
-                if (pos) {
-                    p = new Position(pos.x, pos.y, pos.z);
-                } else {
-                    p = new Position();
-                }
+                crate = new Entity();
+                crate.position.x = x;
+                crate.position.y = y;
+                crate.position.z = z;
 
-                if (rot) {
-                    r = new Rotation(rot.x, rot.y, rot.z);
-                } else {
-                    r = new Rotation();
-                }
+                geometry = new THREE.BoxGeometry(200, 200, 200);
 
-                crate.addComponent(p);
-                crate.addComponent(r);
-                crate.addComponent(new SceneObject(sceneObj));
+                texture = THREE.ImageUtils.loadTexture('assets/textures/crate.gif');
+
+                material = new THREE.MeshBasicMaterial({
+                    map: texture
+                });
+
+                mesh = new THREE.Mesh(geometry, material);
+
+                crate.addComponent(new Mesh(mesh));
                 crate.addComponent(new Health(100));
 
                 return crate;

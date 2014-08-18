@@ -1,18 +1,22 @@
 'use strict';
 
 angular.module('Ironbane.game.ces.World', [
+    'Ironbane.game.THREE',
     'Ironbane.game.ces.EntityList',
     'Ironbane.game.ces.Family'
 ])
     .factory('World', [
+        'THREE',
         'EntityList',
         'Family',
-        function (EntityList, Family) {
+        function (THREE, EntityList, Family) {
             /**
              * The world is the container of all the entities and systems.
              * @class
              */
             var World = function World() {
+                THREE.Scene.call(this);
+
                 /**
                  * A map from familyId to family
                  * @private
@@ -29,6 +33,10 @@ angular.module('Ironbane.game.ces.World', [
                  */
                 this._entities = new EntityList();
             };
+
+            World.prototype = Object.create(THREE.Scene.prototype);
+
+            World.prototype.constructor = World;
 
             /**
              * Add a system to this world.
@@ -84,7 +92,10 @@ angular.module('Ironbane.game.ces.World', [
                     self._onComponentRemoved(entity, component);
                 });
 
-                this._entities.add(entity);
+                self._entities.add(entity);
+
+                // update the THREE object hierarchy since these entities are Object3D
+                self.add(entity);
             };
 
             /**
@@ -102,6 +113,9 @@ angular.module('Ironbane.game.ces.World', [
                 }
 
                 this._entities.remove(entity);
+
+                // update the THREE object hierarchy since these entities are Object3D
+                this.remove(entity);
             };
 
             /**

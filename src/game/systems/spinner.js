@@ -11,13 +11,11 @@ angular.module('Ironbane.game.systems.Spinner', [
 
             // override the system default update
             spinner.update = function (dt) {
-                var entities = this.world.getEntities('rotation');
+                var entities = this.world.getEntities('mesh');
 
                 entities.forEach(function (entity) {
-                    var rotation = entity.getComponent('rotation');
-
-                    rotation.x += 0.005;
-                    rotation.y += 0.01;
+                    entity.rotation.x += 0.005;
+                    entity.rotation.y += 0.01;
                 });
             };
 

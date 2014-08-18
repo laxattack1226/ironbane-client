@@ -9,7 +9,7 @@ angular.module('Ironbane.ui.play', [
         function ($stateProvider) {
             $stateProvider.state('play', {
                 url: '/play',
-                templateUrl: '/templates/ui/play/play.tpl.html',
+                templateUrl: 'ui/play/play.tpl.html',
                 controller: ['$scope',
                     function ($scope) {
                         // TODO: show hearts and stuff

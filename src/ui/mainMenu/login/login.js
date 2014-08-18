@@ -8,7 +8,7 @@ angular.module('Ironbane.ui.mainMenu.login', [
         '$stateProvider',
         function ($stateProvider) {
             $stateProvider.state('mainMenu.login', {
-                templateUrl: '/templates/ui/mainMenu/login/login.tpl.html',
+                templateUrl: 'ui/mainMenu/login/login.tpl.html',
                 controller: ['$scope', '$state', '$log',
                     function ($scope, $state, $log) {
                         $scope.submit = function() {

@@ -1,15 +1,18 @@
 'use strict';
 
 angular.module('Ironbane.game.ces.Entity', [
-    'Ironbane.game.ces.Signal'
+    'Ironbane.game.THREE',
+    'Ironbane.game.ces.Signal',
+    'Ironbane.game.ces.ThreeComponent'
 ])
     .factory('Entity', [
+        'THREE',
         'Signal',
-        function (Signal) {
-            var _id = 0;
+        'ThreeComponent',
+        function (THREE, Signal, ThreeComponent) {
 
             var Entity = function () {
-                this.id = ++_id;
+                THREE.Object3D.call(this);
 
                 this._components = {};
 
@@ -25,6 +28,10 @@ angular.module('Ironbane.game.ces.Entity', [
                  */
                 this.onComponentRemoved = new Signal();
             };
+
+            Entity.prototype = Object.create(THREE.Object3D.prototype);
+
+            Entity.prototype.constructor = Entity;
 
             /**
              * Check if this entity has a component by name.
@@ -53,6 +60,10 @@ angular.module('Ironbane.game.ces.Entity', [
              */
             Entity.prototype.addComponent = function (component) {
                 this._components['$' + component.name] = component;
+                if (component instanceof ThreeComponent) {
+                    //console.log('three component: ', component);
+                    this.add(component[component.__three]);
+                }
                 this.onComponentAdded.emit(this, component.name);
             };
 
@@ -62,22 +73,13 @@ angular.module('Ironbane.game.ces.Entity', [
              * @param {String} componentName
              */
             Entity.prototype.removeComponent = function (componentName) {
+                var component = this._components['$' + componentName];
+                if (component instanceof ThreeComponent) {
+                    //console.log('three component: ', component);
+                    this.remove(component[component.__three]);
+                }
                 this._components['$' + componentName] = undefined;
                 this.onComponentRemoved.emit(this, componentName);
-            };
-
-            Entity.prototype.get = function (component) {
-                return this.getComponent(component);
-            };
-
-            Entity.prototype.has = function (component) {
-                return this.hasComponent(component);
-            };
-
-            Entity.prototype.remove = function (component) {
-                this.removeComponent(component);
-
-                return this;
             };
 
             return Entity;

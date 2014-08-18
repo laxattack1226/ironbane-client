@@ -8,7 +8,7 @@ angular.module('Ironbane.ui.mainMenu.register', [
         '$stateProvider',
         function ($stateProvider) {
             $stateProvider.state('mainMenu.register', {
-                templateUrl: '/templates/ui/mainMenu/register/register.tpl.html',
+                templateUrl: 'ui/mainMenu/register/register.tpl.html',
                 controller: ['$scope', '$state', '$log',
                     function ($scope, $state, $log) {
                         $scope.submit = function() {
