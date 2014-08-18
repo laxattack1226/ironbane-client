@@ -16,7 +16,7 @@ angular.module('Ironbane.game.entities.Crate', [
             var Crate = function (x, y, z) {
                 var crate, geometry, texture, material, mesh;
 
-                crate = new Entity();
+                crate = new Entity('Crate');
                 crate.position.x = x;
                 crate.position.y = y;
                 crate.position.z = z;

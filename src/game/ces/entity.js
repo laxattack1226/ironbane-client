@@ -11,8 +11,10 @@ angular.module('Ironbane.game.ces.Entity', [
         'ThreeComponent',
         function (THREE, Signal, ThreeComponent) {
 
-            var Entity = function () {
+            var Entity = function (name) {
                 THREE.Object3D.call(this);
+
+                this.name = name || '';
 
                 this._components = {};
 
