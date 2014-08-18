@@ -7,7 +7,10 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.ces.Entity',
     'Ironbane.game.systems.Spinner',
     'Ironbane.game.entities.Crate',
-    'Ironbane.game.components.camera'
+    'Ironbane.game.components.camera',
+    'Ironbane.game.components.fpsControls',
+    'Ironbane.game.components.speed',
+    'Ironbane.game.systems.FPSController'
 ])
     .factory('Game', [
         'THREE',
@@ -18,7 +21,10 @@ angular.module('Ironbane.game.engine', [
         'Crate',
         'Camera',
         'Entity',
-        function (THREE, $window, InputMgr, World, Spinner, Crate, Camera, Entity) {
+        'FPSControls',
+        'Speed',
+        'FPSController',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -27,18 +33,25 @@ angular.module('Ironbane.game.engine', [
                 // entity system world
                 game.world = new World();
                 game.world.addSystem(Spinner);
+                game.world.addSystem(new FPSController());
 
-                game.input = new InputMgr();
+                // debug reference, prolly remove this
+                game.input = inputMgr;
+
+                game.clock = new THREE.Clock();
 
                 var viewWidth = $window.innerWidth;
                 var viewHeight = $window.innerHeight - 5;
                 game.renderer = new THREE.WebGLRenderer();
                 game.renderer.setSize(viewWidth, viewHeight);
 
+                // TODO: move this camera stuff to a separate entity generator
                 game.camera = new Entity();
                 game.camera.name = 'MainCamera';
                 game.camera.addComponent(new Camera(new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 1, 1000)));
                 game.camera.position.z = 400;
+                game.camera.addComponent(new FPSControls());
+                game.camera.addComponent(new Speed(220));
 
                 game.world.addEntity(game.camera);
 
@@ -49,8 +62,9 @@ angular.module('Ironbane.game.engine', [
                 game.start = function () {
                     $window.requestAnimationFrame(game.start);
 
-                    // TODO: get time delta
-                    game.world.update();
+                    var delta = game.clock.getDelta();
+
+                    game.world.update(delta);
 
                     // should this be moved into a system??
                     game.renderer.render(game.world, game.camera.getComponent('camera').camera);

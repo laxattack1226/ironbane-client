@@ -33,7 +33,7 @@ angular.module('Ironbane.game.input.InputMgr', [
             }
         }
     ])
-    .factory('InputMgr', [
+    .service('InputMgr', [
         '$log',
         '$window',
         function ($log, $window) {
@@ -73,6 +73,7 @@ angular.module('Ironbane.game.input.InputMgr', [
                 }, false);
             };
 
-            return InputMgr;
+            // singleton instance
+            return new InputMgr();
         }
     ]);
