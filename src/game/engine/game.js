@@ -46,8 +46,7 @@ angular.module('Ironbane.game.engine', [
                 game.renderer.setSize(viewWidth, viewHeight);
 
                 // TODO: move this camera stuff to a separate entity generator
-                game.camera = new Entity();
-                game.camera.name = 'MainCamera';
+                game.camera = new Entity('MainCamera');
                 game.camera.addComponent(new Camera(new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 1, 1000)));
                 game.camera.position.z = 400;
                 game.camera.addComponent(new FPSControls());
