@@ -3,13 +3,13 @@
 angular.module('Ironbane.game.ces.Entity', [
     'Ironbane.game.THREE',
     'Ironbane.game.ces.Signal',
-    'Ironbane.game.ces.ThreeComponent'
+    'Ironbane.game.ces.ChildEntityComponent'
 ])
     .factory('Entity', [
         'THREE',
         'Signal',
-        'ThreeComponent',
-        function (THREE, Signal, ThreeComponent) {
+        'ChildEntityComponent',
+        function (THREE, Signal, ChildEntityComponent) {
 
             var Entity = function (name) {
                 THREE.Object3D.call(this);
@@ -62,9 +62,9 @@ angular.module('Ironbane.game.ces.Entity', [
              */
             Entity.prototype.addComponent = function (component) {
                 this._components['$' + component.name] = component;
-                if (component instanceof ThreeComponent) {
+                if (component instanceof ChildEntityComponent) {
                     //console.log('three component: ', component);
-                    this.add(component[component.__three]);
+                    this.add(component[component.__childEntityProperty]);
                 }
                 this.onComponentAdded.emit(this, component.name);
             };
@@ -76,9 +76,9 @@ angular.module('Ironbane.game.ces.Entity', [
              */
             Entity.prototype.removeComponent = function (componentName) {
                 var component = this._components['$' + componentName];
-                if (component instanceof ThreeComponent) {
+                if (component instanceof ChildEntityComponent) {
                     //console.log('three component: ', component);
-                    this.remove(component[component.__three]);
+                    this.remove(component[component.__childEntityProperty]);
                 }
                 this._components['$' + componentName] = undefined;
                 this.onComponentRemoved.emit(this, componentName);

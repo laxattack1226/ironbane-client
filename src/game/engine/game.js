@@ -11,7 +11,8 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.components.fpsControls',
     'Ironbane.game.components.speed',
     'Ironbane.game.systems.FPSController',
-    'Ironbane.game.entities.GrassPlane'
+    'Ironbane.game.entities.GrassPlane',
+    'Ironbane.game.entities.Skybox'
 ])
     .factory('Game', [
         'THREE',
@@ -26,7 +27,8 @@ angular.module('Ironbane.game.engine', [
         'Speed',
         'FPSController',
         'GrassPlane',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane) {
+        'Skybox',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, Skybox) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -49,18 +51,20 @@ angular.module('Ironbane.game.engine', [
 
                 // TODO: move this camera stuff to a separate entity generator
                 game.camera = new Entity('MainCamera');
-                game.camera.addComponent(new Camera(new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 1, 1000)));
+                game.camera.addComponent(new Camera(new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 1, 10000)));
                 game.camera.position.z = 400;
+                game.camera.position.y = 180;
                 game.camera.addComponent(new FPSControls());
                 game.camera.addComponent(new Speed(220));
 
                 game.world.addEntity(game.camera);
 
                 // add 2 crates for now (test data)
-                game.world.addEntity(new Crate(-250, 0, 0));
-                game.world.addEntity(new Crate(250, 0, 0));
+                game.world.addEntity(new Crate(-250, 200, 0));
+                game.world.addEntity(new Crate(250, 200, 0));
 
                 game.world.addEntity(new GrassPlane());
+                game.world.addEntity(new Skybox());
 
                 game.start = function () {
                     $window.requestAnimationFrame(game.start);

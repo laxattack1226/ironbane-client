@@ -12,12 +12,12 @@ angular.module('Ironbane.game.entities.GrassPlane', [
         'Mesh',
         function (THREE, Entity, Mesh) {
             var defaultSettings = {
-                repeatX: 1,
-                repeatY: 1,
+                repeatX: 128,
+                repeatY: 128,
                 segmentsW: 1,
                 segmentsH: 1,
-                width: 100,
-                height: 100,
+                width: 10000,
+                height: 10000,
                 anisotropy: 16
             };
 
@@ -33,7 +33,7 @@ angular.module('Ironbane.game.entities.GrassPlane', [
 
                 geometry = new THREE.PlaneGeometry(settings.width, settings.height, settings.segmentsW, settings.segmentsH);
 
-                var texture = THREE.ImageUtils.loadTexture('assets/textures/lorez_grass.png');
+                texture = THREE.ImageUtils.loadTexture('assets/textures/lorez_grass.png');
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
                 texture.repeat.x = settings.repeatX
@@ -45,6 +45,7 @@ angular.module('Ironbane.game.entities.GrassPlane', [
                 });
 
                 mesh = new THREE.Mesh(geometry, material);
+                mesh.rotateX(-Math.PI/2);
 
                 plane.addComponent(new Mesh(mesh));
 

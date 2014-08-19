@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('Ironbane.game.components.camera', [
-    'Ironbane.game.ces.ThreeComponent'
+    'Ironbane.game.ces.ChildEntityComponent'
 ])
     .factory('Camera', [
-        'ThreeComponent',
-        function (ThreeComponent) {
+        'ChildEntityComponent',
+        function (ChildEntityComponent) {
             var Camera = function (camera) {
-                var component = new ThreeComponent();
+                var component = new ChildEntityComponent();
 
                 component.name = 'camera';
 
                 component.camera = camera;
-                component.__three = 'camera';
+                component.__childEntityProperty = 'camera';
 
                 return component;
             };

@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('Ironbane.game.components.mesh', [
-    'Ironbane.game.ces.ThreeComponent'
+    'Ironbane.game.ces.ChildEntityComponent'
 ])
     .factory('Mesh', [
-        'ThreeComponent',
-        function (ThreeComponent) {
+        'ChildEntityComponent',
+        function (ChildEntityComponent) {
             var Mesh = function (mesh) {
-                var component = new ThreeComponent();
+                var component = new ChildEntityComponent();
 
                 component.name = 'mesh';
 
                 component.mesh = mesh;
-                component.__three = 'mesh';
+                component.__childEntityProperty = 'mesh';
 
                 return component;
             };

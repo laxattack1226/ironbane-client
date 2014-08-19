@@ -13,7 +13,9 @@ angular.module('Ironbane.game.systems.FPSController', [
                 moveForward: 'w',
                 moveBackward: 's',
                 moveLeft: 'a',
-                moveRight: 'd'
+                moveRight: 'd',
+                moveUp: 'r',
+                moveDown: 'f'
             };
 
             var Controller = function (config) {
@@ -45,6 +47,16 @@ angular.module('Ironbane.game.systems.FPSController', [
                     'on_keydown': controller.onMoveRightDown,
                     'on_keyup': controller.onMoveRightUp,
                     'this': controller
+                }, {
+                    'keys': controller.config.moveUp,
+                    'on_keydown': controller.onMoveUpDown,
+                    'on_keyup': controller.onMoveUpUp,
+                    'this': controller
+                }, {
+                    'keys': controller.config.moveDown,
+                    'on_keydown': controller.onMoveDownDown,
+                    'on_keyup': controller.onMoveDownUp,
+                    'this': controller
                 }]);
             };
 
@@ -71,6 +83,13 @@ angular.module('Ironbane.game.systems.FPSController', [
                     }
                     if (controller.moveRight) {
                         entity.translateX(actualMoveSpeed);
+                    }
+
+                    if (controller.moveDown) {
+                        entity.translateY(-actualMoveSpeed);
+                    }
+                    if (controller.moveUp) {
+                        entity.translateY(actualMoveSpeed);
                     }
                 });
             };
@@ -105,6 +124,22 @@ angular.module('Ironbane.game.systems.FPSController', [
 
             Controller.prototype.onMoveRightUp = function () {
                 this.moveRight = false;
+            };
+
+            Controller.prototype.onMoveDownDown = function () {
+                this.moveDown = true;
+            };
+
+            Controller.prototype.onMoveDownUp = function () {
+                this.moveDown = false;
+            };
+
+            Controller.prototype.onMoveUpDown = function () {
+                this.moveUp = true;
+            };
+
+            Controller.prototype.onMoveUpUp = function () {
+                this.moveUp = false;
             };
 
             return Controller;
