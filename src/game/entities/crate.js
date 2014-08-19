@@ -5,14 +5,20 @@ angular.module('Ironbane.game.entities.Crate', [
     'Ironbane.game.THREE',
     'Ironbane.game.ces.Entity',
     'Ironbane.game.components.health',
-    'Ironbane.game.components.mesh'
+    'Ironbane.game.components.mesh',
+    'Ironbane.game.components.angularVelocity',
+    'Ironbane.game.engine.rng'
 ])
     .factory('Crate', [
         'THREE',
         'Entity',
         'Health',
         'Mesh',
-        function (THREE, Entity, Health, Mesh) {
+        'AngularVelocity',
+        'RNG',
+        function (THREE, Entity, Health, Mesh, AngularVelocity, RNG) {
+            var rng = new RNG('dull sword');
+
             var Crate = function (x, y, z) {
                 var crate, geometry, texture, material, mesh;
 
@@ -33,6 +39,7 @@ angular.module('Ironbane.game.entities.Crate', [
 
                 crate.addComponent(new Mesh(mesh));
                 crate.addComponent(new Health(100));
+                crate.addComponent(new AngularVelocity(rng.uniform(), rng.uniform(), rng.uniform()));
 
                 return crate;
             };

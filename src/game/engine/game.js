@@ -10,7 +10,8 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.components.camera',
     'Ironbane.game.components.fpsControls',
     'Ironbane.game.components.speed',
-    'Ironbane.game.systems.FPSController'
+    'Ironbane.game.systems.FPSController',
+    'Ironbane.game.entities.GrassPlane'
 ])
     .factory('Game', [
         'THREE',
@@ -24,7 +25,8 @@ angular.module('Ironbane.game.engine', [
         'FPSControls',
         'Speed',
         'FPSController',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController) {
+        'GrassPlane',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -57,6 +59,8 @@ angular.module('Ironbane.game.engine', [
                 // add 2 crates for now (test data)
                 game.world.addEntity(new Crate(-250, 0, 0));
                 game.world.addEntity(new Crate(250, 0, 0));
+
+                game.world.addEntity(new GrassPlane());
 
                 game.start = function () {
                     $window.requestAnimationFrame(game.start);
