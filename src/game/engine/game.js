@@ -12,7 +12,9 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.components.speed',
     'Ironbane.game.systems.FPSController',
     'Ironbane.game.entities.GrassPlane',
-    'Ironbane.game.entities.Skybox'
+    'Ironbane.game.entities.Skybox',
+    'Ironbane.game.components.linkedPosition',
+    'Ironbane.game.systems.PositionLinker'
 ])
     .factory('Game', [
         'THREE',
@@ -28,7 +30,9 @@ angular.module('Ironbane.game.engine', [
         'FPSController',
         'GrassPlane',
         'Skybox',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, Skybox) {
+        'LinkedPosition',
+        'PositionLinker',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, Skybox, LinkedPosition, PositionLinker) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -38,6 +42,7 @@ angular.module('Ironbane.game.engine', [
                 game.world = new World();
                 game.world.addSystem(Spinner);
                 game.world.addSystem(new FPSController());
+                game.world.addSystem(PositionLinker);
 
                 // debug reference, prolly remove this
                 game.input = inputMgr;
@@ -64,7 +69,9 @@ angular.module('Ironbane.game.engine', [
                 game.world.addEntity(new Crate(250, 200, 0));
 
                 game.world.addEntity(new GrassPlane());
-                game.world.addEntity(new Skybox());
+                var skybox = new Skybox();
+                skybox.addComponent(new LinkedPosition(game.camera, true, false, true));
+                game.world.addEntity(skybox);
 
                 game.start = function () {
                     $window.requestAnimationFrame(game.start);
