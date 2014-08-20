@@ -10,12 +10,13 @@ angular.module('Ironbane.game.systems.SkySystem', [
 ])
     .service('SkySystem', [
         'System',
+        'Entity',
         'Skybox',
         '$log',
         'THREE',
         'Light',
         'Sun',
-        function (System, Skybox, $log, THREE, Light, Sun) {
+        function (System, Entity, Skybox, $log, THREE, Light, Sun) {
             var SkySystem = function () {
                 this.root = new Entity('SkySystem');
                 this.skybox = new Skybox();
@@ -29,6 +30,12 @@ angular.module('Ironbane.game.systems.SkySystem', [
 
                 this.moonLight = new Light(new THREE.DirectionalLight(0xcccccc));
                 this.root.addComponent(this.moonLight);
+
+                // having to manually add this to scene hierarchy
+                // todo: something better
+                // maybe these are components instead
+                this.root.add(this.skybox);
+                this.root.add(this.sun);
             };
 
             SkySystem.prototype = Object.create(System.prototype);
@@ -38,22 +45,12 @@ angular.module('Ironbane.game.systems.SkySystem', [
             SkySystem.prototype.addedToWorld = function (world) {
                 System.prototype.addedToWorld.call(this, world);
 
-                // having to manually add this to scene hierarchy
-                // todo: something better
-                // maybe these are components
-
-                this.root.add(this.skybox);
-                this.root.add(this.sun);
-
                 // add the entities to teh world
                 this.world.addEntity(this.root);
-                this.world.addEntity(this.skybox);
-                this.world.addEntity(this.sun);
             };
 
-            SkySystem.prototype.update = function (dt) {
-                // TODO
-                $log.log('SkySystem update: ', dt);
+            SkySystem.prototype.update = function () {
+
             };
 
             return SkySystem;

@@ -2,14 +2,16 @@
 
 angular.module('Ironbane.game.ces.World', [
     'Ironbane.game.THREE',
+    'Ironbane.game.ces.Entity',
     'Ironbane.game.ces.EntityList',
     'Ironbane.game.ces.Family'
 ])
     .factory('World', [
         'THREE',
+        'Entity',
         'EntityList',
         'Family',
-        function (THREE, EntityList, Family) {
+        function (THREE, Entity, EntityList, Family) {
             /**
              * The world is the container of all the entities and systems.
              * @class
@@ -73,29 +75,34 @@ angular.module('Ironbane.game.ces.World', [
              * @param {Entity} entity
              */
             World.prototype.addEntity = function (entity) {
-                var families, familyId, self;
-
-                // try to add the entity into each family
-                families = this._families;
-                for (familyId in families) {
-                    families[familyId].addEntityIfMatch(entity);
-                }
-
-                self = this;
-
-                // update the entity-family relationship whenever components are
-                // added to or removed from the entities
-                entity.onComponentAdded.add(function (entity, component) {
-                    self._onComponentAdded(entity, component);
-                });
-                entity.onComponentRemoved.add(function (entity, component) {
-                    self._onComponentRemoved(entity, component);
-                });
-
-                self._entities.add(entity);
+                var families = this._families,
+                    familyId,
+                    self = this;
 
                 // update the THREE object hierarchy since these entities are Object3D
                 self.add(entity);
+
+                // next we must traverse to add the CES entities
+                entity.traverse(function (ent) {
+                    // only add the true entities, not Object3D or other THREE objects
+                    if (ent instanceof Entity) {
+                        // try to add the entity into each family
+                        for (familyId in families) {
+                            families[familyId].addEntityIfMatch(ent);
+                        }
+
+                        // update the entity-family relationship whenever components are
+                        // added to or removed from the entities
+                        ent.onComponentAdded.add(function (ent, component) {
+                            self._onComponentAdded(ent, component);
+                        });
+                        ent.onComponentRemoved.add(function (ent, component) {
+                            self._onComponentRemoved(ent, component);
+                        });
+
+                        self._entities.add(ent);
+                    }
+                });
             };
 
             /**
@@ -104,18 +111,21 @@ angular.module('Ironbane.game.ces.World', [
              * @param {Entity} entity
              */
             World.prototype.removeEntity = function (entity) {
-                var families, familyId;
-
-                // try to remove the entity from each family
-                families = this._families;
-                for (familyId in families) {
-                    families[familyId].removeEntity(entity);
-                }
-
-                this._entities.remove(entity);
+                var families = this._families,
+                    familyId,
+                    self = this;
 
                 // update the THREE object hierarchy since these entities are Object3D
-                this.remove(entity);
+                self.remove(entity);
+
+                entity.traverse(function (ent) {
+                    // try to remove the entity from each family
+                    for (familyId in families) {
+                        families[familyId].removeEntity(ent);
+                    }
+
+                    self._entities.remove(ent);
+                });
             };
 
             /**
