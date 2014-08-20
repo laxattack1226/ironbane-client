@@ -12,10 +12,12 @@ angular.module('Ironbane.game.systems.FPSController', [
             var defaultConfig = {
                 moveForward: 'w',
                 moveBackward: 's',
-                moveLeft: 'a',
-                moveRight: 'd',
+                moveLeft: 'q',
+                moveRight: 'e',
                 moveUp: 'r',
-                moveDown: 'f'
+                moveDown: 'f',
+                turnLeft: 'a',
+                turnRight: 'd'
             };
 
             var Controller = function (config) {
@@ -57,6 +59,16 @@ angular.module('Ironbane.game.systems.FPSController', [
                     'on_keydown': controller.onMoveDownDown,
                     'on_keyup': controller.onMoveDownUp,
                     'this': controller
+                }, {
+                    'keys': controller.config.turnLeft,
+                    'on_keydown': controller.onTurnLeftDown,
+                    'on_keyup': controller.onTurnLeftUp,
+                    'this': controller
+                }, {
+                    'keys': controller.config.turnRight,
+                    'on_keydown': controller.onTurnRightDown,
+                    'on_keyup': controller.onTurnRightUp,
+                    'this': controller
                 }]);
             };
 
@@ -90,6 +102,13 @@ angular.module('Ironbane.game.systems.FPSController', [
                     }
                     if (controller.moveUp) {
                         entity.translateY(actualMoveSpeed);
+                    }
+
+                    if (controller.turnLeft) {
+                        entity.rotateY(actualMoveSpeed * 0.01);
+                    }
+                    if (controller.turnRight) {
+                        entity.rotateY(-actualMoveSpeed * 0.01);
                     }
                 });
             };
@@ -140,6 +159,22 @@ angular.module('Ironbane.game.systems.FPSController', [
 
             Controller.prototype.onMoveUpUp = function () {
                 this.moveUp = false;
+            };
+
+            Controller.prototype.onTurnLeftDown = function () {
+                this.turnLeft = true;
+            };
+
+            Controller.prototype.onTurnLeftUp = function () {
+                this.turnLeft = false;
+            };
+
+            Controller.prototype.onTurnRightDown = function () {
+                this.turnRight = true;
+            };
+
+            Controller.prototype.onTurnRightUp = function () {
+                this.turnRight = false;
             };
 
             return Controller;
