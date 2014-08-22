@@ -64,13 +64,13 @@ angular.module('Ironbane.game.systems.SpriteView', [
             SpriteView.prototype.update = function () {
                 // TODO: limit to 8-way sprites
                 var sprites = this.world.getEntities('sprite'),
-                    camera = this.camera.getComponent('camera').camera;
+                    camera = this.camera;
 
                 sprites.forEach(function(entity) {
                     var sprite = entity.getComponent('sprite').sprite,
                         direction = getDirectionSpriteIndex(camera, sprite);
                     // for now just do middle (until animation)
-                    sprite.material.map.offset.set(2/3, direction / 8)
+                    sprite.material.map.offset.set(1/3, direction / 8)
                 });
             };
 
