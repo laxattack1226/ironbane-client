@@ -39,6 +39,8 @@ angular.module('Ironbane.game.entities.GrassPlane', [
                 texture.repeat.x = settings.repeatX
                 texture.repeat.y = settings.repeatY
                 texture.anisotropy = settings.anisotropy;
+                texture.magFilter = THREE.NearestFilter;
+                texture.minFilter = THREE.NearestMipMapLinearFilter;
 
                 material = new THREE.MeshBasicMaterial({
                     map: texture

@@ -14,7 +14,9 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.entities.GrassPlane',
     'Ironbane.game.systems.SkySystem',
     'Ironbane.game.components.linkedPosition',
-    'Ironbane.game.systems.PositionLinker'
+    'Ironbane.game.systems.PositionLinker',
+    'Ironbane.game.entities.character',
+    'Ironbane.game.systems.SpriteView'
 ])
     .factory('Game', [
         'THREE',
@@ -32,7 +34,9 @@ angular.module('Ironbane.game.engine', [
         'SkySystem',
         'LinkedPosition',
         'PositionLinker',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, SkySystem, LinkedPosition, PositionLinker) {
+        'Character',
+        'SpriteView',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, SkySystem, LinkedPosition, PositionLinker, Character, SpriteView) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -67,6 +71,8 @@ angular.module('Ironbane.game.engine', [
 
                 game.world.addEntity(game.camera);
 
+                game.world.addSystem(new SpriteView(game.camera));
+
                 // add 2 crates for now (test data)
                 game.world.addEntity(new Crate(-250, 200, 0));
                 game.world.addEntity(new Crate(250, 200, 0));
@@ -75,6 +81,8 @@ angular.module('Ironbane.game.engine', [
 
                 // link the entire sky system to the camera
                 game.sky.root.addComponent(new LinkedPosition(game.camera, true, false, true));
+
+                game.world.addEntity(new Character(0, 16, 0));
 
 
                 game.start = function () {
