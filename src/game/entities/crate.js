@@ -27,7 +27,7 @@ angular.module('Ironbane.game.entities.Crate', [
                 crate.position.y = y;
                 crate.position.z = z;
 
-                geometry = new THREE.BoxGeometry(200, 200, 200);
+                geometry = new THREE.BoxGeometry(5, 5, 5);
 
                 texture = THREE.ImageUtils.loadTexture('assets/textures/crate.gif');
 

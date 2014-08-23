@@ -63,9 +63,9 @@ angular.module('Ironbane.game.engine', [
 
                 // TODO: move this camera stuff to a separate entity generator
                 game.camera = new Entity('MainCamera');
-                game.camera.addComponent(new Camera(new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 1, 10000)));
-                game.camera.position.z = 400;
-                game.camera.position.y = 180;
+                game.camera.addComponent(new Camera(new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 0.1, 4000)));
+                game.camera.position.z = 40;
+                game.camera.position.y = 18;
                 game.camera.addComponent(new FPSControls());
                 game.camera.addComponent(new Speed(220));
 
@@ -74,8 +74,8 @@ angular.module('Ironbane.game.engine', [
                 game.world.addSystem(new SpriteView(game.camera));
 
                 // add 2 crates for now (test data)
-                game.world.addEntity(new Crate(-250, 200, 0));
-                game.world.addEntity(new Crate(250, 200, 0));
+                game.world.addEntity(new Crate(-25, 20, 0));
+                game.world.addEntity(new Crate(25, 20, 0));
 
                 game.world.addEntity(new GrassPlane());
 

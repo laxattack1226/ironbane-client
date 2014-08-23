@@ -16,16 +16,19 @@ angular.module('Ironbane.game.entities.sun', [
                 var entity = new Entity('Sun'),
                     texture, geometry, material, mesh;
 
-                texture = THREE.ImageUtils.loadTexture('assets/textures/sun.png');
+                texture = THREE.ImageUtils.loadTexture('assets/textures/sky/sun.png');
 
                 geometry = new THREE.PlaneGeometry(600, 600, 1, 1);
 
+                var sunColor = new THREE.Color();
+                sunColor.setStyle('yellow');
                 material = new THREE.MeshBasicMaterial({
                     map: texture,
                     transparent: true,
-                    alphaTest: 0.01
+                    alphaTest: 0.01,
+                    side: THREE.DoubleSide,
+                    color: sunColor
                 });
-                material.side = THREE.DoubleSide;
 
                 mesh = new THREE.Mesh(geometry, material);
 

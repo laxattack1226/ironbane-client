@@ -12,12 +12,10 @@ angular.module('Ironbane.game.entities.GrassPlane', [
         'Mesh',
         function (THREE, Entity, Mesh) {
             var defaultSettings = {
-                repeatX: 128,
-                repeatY: 128,
                 segmentsW: 1,
                 segmentsH: 1,
-                width: 10000,
-                height: 10000,
+                width: 5000,
+                height: 5000,
                 anisotropy: 16
             };
 
@@ -36,8 +34,8 @@ angular.module('Ironbane.game.entities.GrassPlane', [
                 texture = THREE.ImageUtils.loadTexture('assets/textures/lorez_grass.png');
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.x = settings.repeatX
-                texture.repeat.y = settings.repeatY
+                texture.repeat.x = settings.width / 16; // img size
+                texture.repeat.y = settings.height / 16;
                 texture.anisotropy = settings.anisotropy;
                 texture.magFilter = THREE.NearestFilter;
                 texture.minFilter = THREE.NearestMipMapLinearFilter;

@@ -111,7 +111,7 @@ angular.module('Ironbane.game.systems.SkySystem', [
 
                 skyboxMesh.material.uniforms.vSun.value.copy(this.sunVector);
 
-                sunMesh.position.copy(this.root.position.clone().add(this.sunVector.clone().multiplyScalar(sunDistance)));
+                sunMesh.position.copy(this.sunVector.clone().multiplyScalar(sunDistance));
                 sunMesh.lookAt(this.root.position);
 
                 this.adjustLighting(sunMesh.position.y / sunDistance);
