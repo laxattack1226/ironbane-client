@@ -16,7 +16,8 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.components.linkedPosition',
     'Ironbane.game.systems.PositionLinker',
     'Ironbane.game.entities.character',
-    'Ironbane.game.systems.SpriteView'
+    'Ironbane.game.systems.SpriteView',
+    'Ironbane.game.systems.ChatBubbler'
 ])
     .factory('Game', [
         'THREE',
@@ -36,7 +37,8 @@ angular.module('Ironbane.game.engine', [
         'PositionLinker',
         'Character',
         'SpriteView',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, SkySystem, LinkedPosition, PositionLinker, Character, SpriteView) {
+        'ChatBubbler',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, SkySystem, LinkedPosition, PositionLinker, Character, SpriteView, ChatBubbler) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -82,7 +84,12 @@ angular.module('Ironbane.game.engine', [
                 // link the entire sky system to the camera
                 game.sky.root.addComponent(new LinkedPosition(game.camera, true, false, true));
 
-                game.world.addEntity(new Character(0, 16, 0));
+                var guy = new Character(0, 16, 0);
+                game.world.addEntity(guy);
+
+                // hack! for now just a test, later actually base these on some event
+                var bubbler = new ChatBubbler();
+                bubbler.create(guy, 'Welcome to Ironbane 2: The Revival :)');
 
 
                 game.start = function () {
