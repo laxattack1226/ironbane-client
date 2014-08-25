@@ -17,7 +17,8 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.systems.PositionLinker',
     'Ironbane.game.entities.character',
     'Ironbane.game.systems.SpriteView',
-    'Ironbane.game.systems.ChatBubbler'
+    'Ironbane.game.systems.ChatBubbler',
+    'Ironbane.game.systems.SpriteAnimator'
 ])
     .factory('Game', [
         'THREE',
@@ -38,7 +39,8 @@ angular.module('Ironbane.game.engine', [
         'Character',
         'SpriteView',
         'ChatBubbler',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, SkySystem, LinkedPosition, PositionLinker, Character, SpriteView, ChatBubbler) {
+        'SpriteAnimator',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, SkySystem, LinkedPosition, PositionLinker, Character, SpriteView, ChatBubbler, SpriteAnimator) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -49,6 +51,7 @@ angular.module('Ironbane.game.engine', [
                 game.world.addSystem(Spinner);
                 game.world.addSystem(new FPSController());
                 game.world.addSystem(PositionLinker);
+                game.world.addSystem(new SpriteAnimator());
 
                 game.sky = new SkySystem();
                 game.world.addSystem(game.sky);
