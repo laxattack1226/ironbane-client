@@ -1,10 +1,12 @@
 angular.module('Irobane.game.components.position', [
-    'Ironbane.game.ces.Component'
+    'Ironbane.game.ces.component'
 ])
     .factory('positionComponent', [
         'Component',
-        function(Component) {
-            var Position = function(x, y, z) {
+        function (Component) {
+            'use strict';
+
+            var Position = function (x, y, z) {
                 Component.call(this);
 
                 this.x = x || 0;

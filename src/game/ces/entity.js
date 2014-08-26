@@ -1,15 +1,14 @@
-'use strict';
-
-angular.module('Ironbane.game.ces.Entity', [
+angular.module('Ironbane.game.ces.entity', [
     'Ironbane.game.THREE',
     'Ironbane.game.ces.Signal',
-    'Ironbane.game.ces.ChildEntityComponent'
+    'Ironbane.game.ces.childEntityComponent'
 ])
     .factory('Entity', [
         'THREE',
         'Signal',
         'ChildEntityComponent',
         function (THREE, Signal, ChildEntityComponent) {
+            'use strict';
 
             var Entity = function (name) {
                 THREE.Object3D.call(this);

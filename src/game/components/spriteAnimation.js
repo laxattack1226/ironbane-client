@@ -1,25 +1,30 @@
-'use strict';
-
 angular.module('Ironbane.game.components.spriteAnimation', [
-    'Ironbane.game.ces.Component'
+    'Ironbane.game.ces.component'
 ])
-    .factory('SpriteAnimation', [
+    .factory('spriteAnimationComponent', [
         'Component',
         function (Component) {
+            'use strict';
+
             var SpriteAnimation = function (animName, frames, speed, loop, cyclic) {
-                var component = new Component();
-                component.name = 'spriteAnimation';
+                Component.call(this);
 
-                component.animationName = animName || 'idle';
-                component.frames = frames || [0];
-                component.speed = speed || 0.25;
-                component.loop = loop !== false ? true : false;
-                component.cyclic = false;
-                component.currentFrame = 0;
-                component.runningTime = 0;
-
-                return component;
+                this.animationName = animName || 'idle';
+                this.frames = frames || [0];
+                this.speed = speed || 0.25;
+                this.loop = loop !== false ? true : false;
+                this.cyclic = false;
+                this.currentFrame = 0;
+                this.runningTime = 0;
             };
+
+            SpriteAnimation.prototype = Object.create(Component.prototype);
+            SpriteAnimation.prototype.constructor = SpriteAnimation;
+
+            SpriteAnimation.prototype.name = 'spriteAnimation';
+
+            // freeze the name because that's important to the ECS
+            Object.freeze(SpriteAnimation.prototype);
 
             return SpriteAnimation;
         }

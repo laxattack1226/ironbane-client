@@ -1,19 +1,25 @@
-'use strict';
-
-angular.module('Ironbane.game.components.health', [
-    'Ironbane.game.ces.Component'
+angular.module('Irobane.game.components.health', [
+    'Ironbane.game.ces.component'
 ])
-    .factory('Health', [
+    .factory('healthComponent', [
         'Component',
         function (Component) {
+            'use strict';
+
             var Health = function (amount) {
-                var component = new Component();
-                component.name = 'health';
+                Component.call(this);
 
-                component.maxHealth = component.health = amount || 1;
-
-                return component;
+                this.value = amount;
+                this.max = amount;
             };
+
+            Health.prototype = Object.create(Component.prototype);
+            Health.prototype.constructor = Health;
+
+            Health.prototype.name = 'health';
+
+            // freeze the name because that's important to the ECS
+            Object.freeze(Health.prototype);
 
             return Health;
         }

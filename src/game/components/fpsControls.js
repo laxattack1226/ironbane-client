@@ -1,19 +1,23 @@
-'use strict';
-
+// this is a marker component, data is not used
 angular.module('Ironbane.game.components.fpsControls', [
-    'Ironbane.game.ces.Component'
+    'Ironbane.game.ces.component'
 ])
-    .factory('FPSControls', [
+    .factory('fpsControlsComponent', [
         'Component',
         function (Component) {
+            'use strict';
+
             var FPSControls = function () {
-                var component = new Component();
-                component.name = 'fpsControls';
-
-                // currently this is just a marker component, should have like invertY ??
-
-                return component;
+                Component.call(this);
             };
+
+            FPSControls.prototype = Object.create(Component.prototype);
+            FPSControls.prototype.constructor = FPSControls;
+
+            FPSControls.prototype.name = 'fpsControls';
+
+            // freeze the name because that's important to the ECS
+            Object.freeze(FPSControls.prototype);
 
             return FPSControls;
         }
