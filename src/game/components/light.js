@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Ironbane.game.components.light', [
-    'Ironbane.game.ces.ChildEntityComponent'
+    'Ironbane.game.ces.childEntityComponent'
 ])
     .factory('Light', [
         'ChildEntityComponent',

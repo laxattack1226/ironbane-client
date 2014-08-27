@@ -3,16 +3,16 @@
 // another test entity
 angular.module('Ironbane.game.entities.Skybox', [
     'Ironbane.game.THREE',
-    'Ironbane.game.ces.Entity',
-    'Ironbane.game.components.mesh',
+    'Ironbane.game.ces.entity',
+    'Ironbane.game.engine.component-factory',
     'Ironbane.game.shaders.skybox'
 ])
     .factory('Skybox', [
         'THREE',
         'Entity',
-        'Mesh',
+        'ComponentFactory',
         'SkyboxShader',
-        function (THREE, Entity, Mesh, SkyboxShader) {
+        function (THREE, Entity, ComponentFactory, SkyboxShader) {
             var Skybox = function (x, y, z) {
                 var sky, geometry, mesh;
 
@@ -25,7 +25,7 @@ angular.module('Ironbane.game.entities.Skybox', [
 
                 mesh = new THREE.Mesh(geometry, SkyboxShader);
 
-                sky.addComponent(new Mesh(mesh));
+                sky.addComponent(ComponentFactory.create('mesh', [mesh]));
 
                 return sky;
             };

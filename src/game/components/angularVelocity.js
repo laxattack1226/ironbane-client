@@ -1,5 +1,5 @@
 angular.module('Irobane.game.components.angularVelocity', [
-    'Ironbane.game.ces.Component'
+    'Ironbane.game.ces.component'
 ])
     .factory('angularVelocityComponent', [
         'Component',
