@@ -2,7 +2,7 @@
 
 angular.module('Ironbane.ui.mainMenu', [
     'ui.router',
-    'templates',
+    'angus.templates.app',
     // sub states
     'Ironbane.ui.mainMenu.top',
     'Ironbane.ui.mainMenu.login',

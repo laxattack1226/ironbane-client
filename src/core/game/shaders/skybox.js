@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('Ironbane.game.shaders.skybox', [
     'Ironbane.game.shaders.skybox.vs',
     'Ironbane.game.shaders.skybox_world.fs',

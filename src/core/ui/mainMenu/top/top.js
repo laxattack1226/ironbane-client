@@ -2,7 +2,7 @@
 
 angular.module('Ironbane.ui.mainMenu.top', [
     'ui.router',
-    'templates'
+    'angus.templates.app'
 ])
     .config([
         '$stateProvider',

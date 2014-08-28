@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('Irobane.game.components.position', [
     'Ironbane.game.ces.Component'
 ])

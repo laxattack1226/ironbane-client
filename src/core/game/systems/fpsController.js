@@ -29,7 +29,7 @@ angular.module('Ironbane.game.systems.FPSController', [
                 controller.config = config || defaultConfig;
 
                 // bind keys
-                inputMgr.keyboard.register_many([{
+                inputMgr.keyboard.register_many([{ // jshint ignore:line
                     'keys': controller.config.moveForward,
                     'on_keydown': controller.onMoveForwardDown,
                     'on_keyup': controller.onMoveForwardUp,

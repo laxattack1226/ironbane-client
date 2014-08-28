@@ -87,7 +87,7 @@ angular.module('Ironbane.game.ces.World', [
                     // only add the true entities, not Object3D or other THREE objects
                     if (ent instanceof Entity) {
                         // try to add the entity into each family
-                        for (familyId in families) {
+                        for (var familyId in families) {
                             families[familyId].addEntityIfMatch(ent);
                         }
 
@@ -120,7 +120,7 @@ angular.module('Ironbane.game.ces.World', [
 
                 entity.traverse(function (ent) {
                     // try to remove the entity from each family
-                    for (familyId in families) {
+                    for (var familyId in families) {
                         families[familyId].removeEntity(ent);
                     }
 

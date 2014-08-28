@@ -2,7 +2,7 @@
 
 angular.module('Ironbane.ui.play', [
     'ui.router',
-    'templates'
+    'angus.templates.app'
 ])
     .config([
         '$stateProvider',

@@ -68,12 +68,12 @@ angular.module('Ironbane.game.systems.ChatBubbler', [
                 createBubble(ctx, borderWidth * 0.5, borderWidth * 0.5, textWidth + borderWidth, fontsize * lineHeight + borderWidth, borderRadius);
 
                 // text color
-                ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
+                ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
 
                 ctx.fillText(message, borderWidth, fontsize + borderWidth);
 
                 // canvas contents will be used for a texture
-                var texture = new THREE.Texture(canvas)
+                var texture = new THREE.Texture(canvas);
                 texture.needsUpdate = true;
 
                 var spriteMaterial = new THREE.SpriteMaterial({

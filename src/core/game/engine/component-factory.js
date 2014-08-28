@@ -1,3 +1,5 @@
+'use strict';
+
 // load components through configuration instead of code
 angular.module('Ironbane.game.engine.component-factory', [
     // *all* available components must be registered here!
@@ -6,16 +8,16 @@ angular.module('Ironbane.game.engine.component-factory', [
     .service('ComponentFactory', [
         '$injector',
         '$log',
-        function($injector, $log) {
+        function ($injector, $log) {
             // component registry?
             // injection based on naming convention? i.e. positionComponent
             // separate "cache" or dynamically add to module
 
-            this.getComponent = function(component) {
+            this.getComponent = function (component) {
                 var diName = component + 'Component',
                     Component;
 
-                if($injector.has(diName)) {
+                if ($injector.has(diName)) {
                     $log.log('has it!');
                     Component = $injector.get(diName);
                     // instantiate?

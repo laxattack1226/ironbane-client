@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('Ironbane.ui.mainMenu.register', [
+angular.module('Ironbane.ui.mainMenu.login', [
     'ui.router',
-    'templates'
+    'angus.templates.app'
 ])
     .config([
         '$stateProvider',
         function ($stateProvider) {
-            $stateProvider.state('mainMenu.register', {
-                templateUrl: 'ui/mainMenu/register/register.tpl.html',
+            $stateProvider.state('mainMenu.login', {
+                templateUrl: 'ui/mainMenu/login/login.tpl.html',
                 controller: ['$scope', '$state', '$log',
                     function ($scope, $state, $log) {
                         $scope.submit = function() {
-                            $log.log('user: ', $scope.user);
+                            $log.log('creds: ', $scope.creds);
                             // TODO: login somewhere
                         };
 
