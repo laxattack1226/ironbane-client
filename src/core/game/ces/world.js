@@ -2,7 +2,7 @@
 
 angular.module('Ironbane.game.ces.World', [
     'Ironbane.game.THREE',
-    'Ironbane.game.ces.Entity',
+    'Ironbane.game.ces.entity',
     'Ironbane.game.ces.EntityList',
     'Ironbane.game.ces.Family'
 ])

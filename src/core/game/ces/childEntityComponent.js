@@ -1,12 +1,12 @@
-'use strict';
-
 // subclass of Component used for the special case that Three Objects are already what we count as entities
-angular.module('Ironbane.game.ces.ChildEntityComponent', [
-    'Ironbane.game.ces.Component'
+angular.module('Ironbane.game.ces.childEntityComponent', [
+    'Ironbane.game.ces.component'
 ])
     .factory('ChildEntityComponent', [
         'Component',
         function (Component) {
+            'use strict';
+
             var ChildEntityComponent = function () {
                 Component.call(this);
             };

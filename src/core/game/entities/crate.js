@@ -1,49 +1,45 @@
-'use strict';
-
 // quick template for a crate entity
 angular.module('Ironbane.game.entities.Crate', [
     'Ironbane.game.THREE',
-    'Ironbane.game.ces.Entity',
-    'Ironbane.game.components.health',
-    'Ironbane.game.components.mesh',
-    'Ironbane.game.components.angularVelocity',
+    'Ironbane.game.ces.entity',
+    'Ironbane.game.engine.component-factory',
     'Ironbane.game.engine.rng'
 ])
     .factory('Crate', [
-        'THREE',
-        'Entity',
-        'Health',
-        'Mesh',
-        'AngularVelocity',
-        'RNG',
-        function (THREE, Entity, Health, Mesh, AngularVelocity, RNG) {
-            var rng = new RNG('dull sword');
+            'THREE',
+            'Entity',
+            'RNG',
+            'ComponentFactory',
+            function (THREE, Entity, RNG, ComponentFactory) {
+                'use strict';
 
-            var Crate = function (x, y, z) {
-                var crate, geometry, texture, material, mesh;
+                var rng = new RNG('dull sword');
 
-                crate = new Entity('Crate');
-                crate.position.x = x;
-                crate.position.y = y;
-                crate.position.z = z;
+                var Crate = function (x, y, z) {
+                    var crate, geometry, texture, material, mesh;
 
-                geometry = new THREE.BoxGeometry(5, 5, 5);
+                    crate = new Entity('Crate');
+                    crate.position.x = x;
+                    crate.position.y = y;
+                    crate.position.z = z;
 
-                texture = THREE.ImageUtils.loadTexture('assets/textures/crate.gif');
+                    geometry = new THREE.BoxGeometry(5, 5, 5);
 
-                material = new THREE.MeshBasicMaterial({
-                    map: texture
-                });
+                    texture = THREE.ImageUtils.loadTexture('assets/textures/crate.gif');
 
-                mesh = new THREE.Mesh(geometry, material);
+                    material = new THREE.MeshBasicMaterial({
+                        map: texture
+                    });
 
-                crate.addComponent(new Mesh(mesh));
-                crate.addComponent(new Health(100));
-                crate.addComponent(new AngularVelocity(rng.uniform(), rng.uniform(), rng.uniform()));
+                    mesh = new THREE.Mesh(geometry, material);
 
-                return crate;
-            };
+                    crate.addComponent(ComponentFactory.create('mesh', [mesh]));
+                    crate.addComponent(ComponentFactory.create('health', [100]));
+                    crate.addComponent(ComponentFactory.create('angularVelocity', [rng.uniform(), rng.uniform(), rng.uniform()]);
 
-            return Crate;
-        }
-    ]);
+                        return crate;
+                    };
+
+                    return Crate;
+                }
+            ]);

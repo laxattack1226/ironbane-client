@@ -1,19 +1,24 @@
-'use strict';
-
-angular.module('Ironbane.game.components.speed', [
-    'Ironbane.game.ces.Component'
+angular.module('Irobane.game.components.speed', [
+    'Ironbane.game.ces.component'
 ])
-    .factory('Speed', [
+    .factory('speedComponent', [
         'Component',
         function (Component) {
+            'use strict';
+
             var Speed = function (amount) {
-                var component = new Component();
-                component.name = 'speed';
+                Component.call(this);
 
-                component.value = amount || 0;
-
-                return component;
+                this.value = amount;
             };
+
+            Speed.prototype = Object.create(Component.prototype);
+            Speed.prototype.constructor = Speed;
+
+            Speed.prototype.name = 'speed';
+
+            // freeze the name because that's important to the ECS
+            Object.freeze(Speed.prototype);
 
             return Speed;
         }

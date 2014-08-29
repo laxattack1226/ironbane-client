@@ -3,14 +3,14 @@
 // another test entity
 angular.module('Ironbane.game.entities.GrassPlane', [
     'Ironbane.game.THREE',
-    'Ironbane.game.ces.Entity',
-    'Ironbane.game.components.mesh'
+    'Ironbane.game.ces.entity',
+    'Ironbane.game.engine.component-factory'
 ])
     .factory('GrassPlane', [
         'THREE',
         'Entity',
-        'Mesh',
-        function (THREE, Entity, Mesh) {
+        'ComponentFactory',
+        function (THREE, Entity, ComponentFactory) {
             var defaultSettings = {
                 segmentsW: 1,
                 segmentsH: 1,
@@ -47,7 +47,7 @@ angular.module('Ironbane.game.entities.GrassPlane', [
                 mesh = new THREE.Mesh(geometry, material);
                 mesh.rotateX(-Math.PI/2);
 
-                plane.addComponent(new Mesh(mesh));
+                plane.addComponent(ComponentFactory.create('mesh', [mesh]));
 
                 return plane;
             };

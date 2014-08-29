@@ -1,18 +1,16 @@
-'use strict';
-
 angular.module('Ironbane.game.entities.sun', [
-    'Ironbane.game.ces.Entity',
+    'Ironbane.game.ces.entity',
     'Ironbane.game.THREE',
-    'Ironbane.game.components.material',
-    'Ironbane.game.components.mesh'
+    'Ironbane.game.engine.component-factory'
 ])
     .factory('Sun', [
         'Entity',
-        'Material',
-        'Mesh',
+        'ComponentFactory',
         'THREE',
-        function (Entity, Material, Mesh, THREE) {
-            var Sun = function () {
+        function (Entity, ComponentFactory, THREE) {
+            'use strict';
+
+            var Sun = function (tint) {
                 var entity = new Entity('Sun'),
                     texture, geometry, material, mesh;
 
@@ -21,7 +19,7 @@ angular.module('Ironbane.game.entities.sun', [
                 geometry = new THREE.PlaneGeometry(600, 600, 1, 1);
 
                 var sunColor = new THREE.Color();
-                sunColor.setStyle('yellow');
+                sunColor.setStyle(tint || 'yellow');
                 material = new THREE.MeshBasicMaterial({
                     map: texture,
                     transparent: true,
@@ -32,8 +30,8 @@ angular.module('Ironbane.game.entities.sun', [
 
                 mesh = new THREE.Mesh(geometry, material);
 
-                entity.addComponent(new Material(material));
-                entity.addComponent(new Mesh(mesh));
+                entity.addComponent(ComponentFactory.create('material', [material]));
+                entity.addComponent(ComponentFactory.create('mesh', [mesh]));
 
                 return entity;
             };

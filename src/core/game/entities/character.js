@@ -1,26 +1,20 @@
 'use strict';
 
 angular.module('Ironbane.game.entities.character', [
-    'Ironbane.game.ces.Entity',
+    'Ironbane.game.ces.entity',
     'Ironbane.game.THREE',
-    'Ironbane.game.components.material',
-    'Ironbane.game.components.sprite',
-    'Ironbane.game.components.eightWay',
-    'Ironbane.game.components.spriteAnimation'
+    'Ironbane.game.engine.component-factory'
 ])
     .factory('Character', [
         'Entity',
-        'Material',
-        'Sprite',
-        'EightWay',
-        'SpriteAnimation',
+        'ComponentFactory',
         'THREE',
-        function (Entity, Material, Sprite, EightWay, SpriteAnimation, THREE) {
+        function (Entity, ComponentFactory, THREE) {
             var Character = function (x, y, z) {
                 var entity = new Entity('Guy'),
                     texture, material, sprite;
 
-                texture = THREE.ImageUtils.loadTexture('assets/textures/base_human.png');
+                texture = THREE.ImageUtils.loadTexture('assets/textures/characters/base_human.png');
                 // character sprites are 3 across, 8 down
                 texture.repeat.set(1 / 3, 1 / 8);
                 texture.magFilter = THREE.NearestFilter;
@@ -38,14 +32,14 @@ angular.module('Ironbane.game.entities.character', [
                 sprite.scale.set(30, 30, 30); // TODO: figure out correct scale
                 sprite.position.set(x, y, z);
 
-                entity.addComponent(new Material(material));
-                entity.addComponent(new Sprite(sprite));
+                entity.addComponent(ComponentFactory.create('material', [material]));
+                entity.addComponent(ComponentFactory.create('sprite', [sprite]));
 
                 // for the moment, we only have one, and we'll just hack it in
-                entity.addComponent(new SpriteAnimation('walk', [0, 1, 2], 0.2, true, true));
+                entity.addComponent(ComponentFactory.create('spriteAnimation', ['walk', [0, 1, 2], 0.2, true, true]));
 
                 // 8-way sprite
-                entity.addComponent(new EightWay());
+                entity.addComponent(ComponentFactory.create('eightWay'));
 
                 return entity;
             };

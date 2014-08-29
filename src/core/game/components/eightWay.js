@@ -1,18 +1,23 @@
-'use strict';
-
 // this is a marker component, data is not used
 angular.module('Ironbane.game.components.eightWay', [
-    'Ironbane.game.ces.Component'
+    'Ironbane.game.ces.component'
 ])
-    .factory('EightWay', [
+    .factory('eightWayComponent', [
         'Component',
         function (Component) {
-            var EightWay = function () {
-                var component = new Component();
-                component.name = 'eightWay';
+            'use strict';
 
-                return component;
+            var EightWay = function () {
+                Component.call(this);
             };
+
+            EightWay.prototype = Object.create(Component.prototype);
+            EightWay.prototype.constructor = EightWay;
+
+            EightWay.prototype.name = 'eightWay';
+
+            // freeze the name because that's important to the ECS
+            Object.freeze(EightWay.prototype);
 
             return EightWay;
         }

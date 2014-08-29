@@ -1,20 +1,25 @@
-'use strict';
-
 angular.module('Ironbane.game.components.material', [
-    'Ironbane.game.ces.Component'
+    'Ironbane.game.ces.component'
 ])
-    .factory('Material', [
+    .factory('materialComponent', [
         'Component',
         function (Component) {
-            var Material = function (material) {
-                var component = new Component();
+            'use strict';
 
-                component.name = 'material';
+            var Material = function (matRef) {
+                Component.call(this);
 
-                component.material = material;
-
-                return component;
+                // TODO: store state data for this instead, reference should be secondary
+                this.material = matRef;
             };
+
+            Material.prototype = Object.create(Component.prototype);
+            Material.prototype.constructor = Material;
+
+            Material.prototype.name = 'material';
+
+            // freeze the name because that's important to the ECS
+            Object.freeze(Material.prototype);
 
             return Material;
         }
