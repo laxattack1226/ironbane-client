@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('Ironbane.game.entities.character', [
     'Ironbane.game.ces.entity',
     'Ironbane.game.THREE',
@@ -10,6 +8,8 @@ angular.module('Ironbane.game.entities.character', [
         'ComponentFactory',
         'THREE',
         function (Entity, ComponentFactory, THREE) {
+            'use strict';
+
             var Character = function (x, y, z) {
                 var entity = new Entity('Guy'),
                     texture, material, sprite;

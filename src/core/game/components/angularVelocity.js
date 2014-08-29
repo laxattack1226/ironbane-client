@@ -1,4 +1,4 @@
-angular.module('Irobane.game.components.angularVelocity', [
+angular.module('Ironbane.game.components.angularVelocity', [
     'Ironbane.game.ces.component'
 ])
     .factory('angularVelocityComponent', [
@@ -17,10 +17,11 @@ angular.module('Irobane.game.components.angularVelocity', [
             AngularVelocity.prototype = Object.create(Component.prototype);
             AngularVelocity.prototype.constructor = AngularVelocity;
 
-            AngularVelocity.prototype.name = 'angularVelocity';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(AngularVelocity.prototype);
+            Object.defineProperty(AngularVelocity.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'angularVelocity'
+            });
 
             return AngularVelocity;
         }

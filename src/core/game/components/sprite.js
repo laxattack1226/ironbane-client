@@ -1,21 +1,26 @@
-'use strict';
-
 angular.module('Ironbane.game.components.sprite', [
     'Ironbane.game.ces.childEntityComponent'
 ])
-    .factory('Sprite', [
+    .factory('spriteComponent', [
         'ChildEntityComponent',
         function (ChildEntityComponent) {
+            'use strict';
+
             var Sprite = function (sprite) {
-                var component = new ChildEntityComponent();
+                ChildEntityComponent.call(this);
 
-                component.name = 'sprite';
-
-                component.sprite = sprite;
-                component.__childEntityProperty = 'sprite';
-
-                return component;
+                this.sprite = sprite;
+                this.__childEntityProperty = 'sprite';
             };
+
+            Sprite.prototype = Object.create(ChildEntityComponent.prototype);
+            Sprite.prototype.constructor = Sprite;
+
+            Object.defineProperty(Sprite.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'sprite'
+            });
 
             return Sprite;
         }

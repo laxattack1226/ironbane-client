@@ -1,21 +1,26 @@
-'use strict';
-
 angular.module('Ironbane.game.components.mesh', [
     'Ironbane.game.ces.childEntityComponent'
 ])
-    .factory('Mesh', [
+    .factory('meshComponent', [
         'ChildEntityComponent',
         function (ChildEntityComponent) {
+            'use strict';
+
             var Mesh = function (mesh) {
-                var component = new ChildEntityComponent();
+                ChildEntityComponent.call(this);
 
-                component.name = 'mesh';
-
-                component.mesh = mesh;
-                component.__childEntityProperty = 'mesh';
-
-                return component;
+                this.mesh = mesh;
+                this.__childEntityProperty = 'mesh';
             };
+
+            Mesh.prototype = Object.create(ChildEntityComponent.prototype);
+            Mesh.prototype.constructor = Mesh;
+
+            Object.defineProperty(Mesh.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'mesh'
+            });
 
             return Mesh;
         }

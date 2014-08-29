@@ -14,10 +14,11 @@ angular.module('Ironbane.game.components.fpsControls', [
             FPSControls.prototype = Object.create(Component.prototype);
             FPSControls.prototype.constructor = FPSControls;
 
-            FPSControls.prototype.name = 'fpsControls';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(FPSControls.prototype);
+            Object.defineProperty(FPSControls.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'fpsControls'
+            });
 
             return FPSControls;
         }

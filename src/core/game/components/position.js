@@ -1,6 +1,4 @@
-'use strict';
-
-angular.module('Irobane.game.components.position', [
+angular.module('Ironbane.game.components.position', [
     'Ironbane.game.ces.component'
 ])
     .factory('positionComponent', [
@@ -19,10 +17,11 @@ angular.module('Irobane.game.components.position', [
             Position.prototype = Object.create(Component.prototype);
             Position.prototype.constructor = Position;
 
-            Position.prototype.name = 'position';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(Position.prototype);
+            Object.defineProperty(Position.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'position'
+            });
 
             return Position;
         }

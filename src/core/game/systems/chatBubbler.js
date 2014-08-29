@@ -2,19 +2,17 @@
 
 angular.module('Ironbane.game.systems.ChatBubbler', [
     'Ironbane.game.ces.System',
-    'Ironbane.game.ces.Entity',
-    'Ironbane.game.components.material',
-    'Ironbane.game.components.sprite',
+    'Ironbane.game.ces.entity',
+    'Ironbane.game.engine.component-factory',
     'Ironbane.game.THREE'
 ])
     .service('ChatBubbler', [
         'System',
         '$window',
         'Entity',
-        'Material',
-        'Sprite',
+        'ComponentFactory',
         'THREE',
-        function (System, $window, Entity, Material, Sprite, THREE) {
+        function (System, $window, Entity, ComponentFactory, THREE) {
 
             function createBubble(ctx, x, y, w, h, r) {
                 ctx.beginPath();
@@ -79,13 +77,13 @@ angular.module('Ironbane.game.systems.ChatBubbler', [
                 var spriteMaterial = new THREE.SpriteMaterial({
                     map: texture
                 });
-                entity.addComponent(new Material(spriteMaterial));
+                entity.addComponent(ComponentFactory.create('material', [spriteMaterial]));
 
                 var sprite = new THREE.Sprite(spriteMaterial);
                 sprite.scale.set(100, 50, 1.0);
                 // y should be based on the target's top, for now a hack...
                 sprite.position.y = 20;
-                entity.addComponent(new Sprite(sprite));
+                entity.addComponent(ComponentFactory.create('sprite', [sprite]));
 
                 // TODO: add lifespan component
 

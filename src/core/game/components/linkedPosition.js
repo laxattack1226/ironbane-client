@@ -18,10 +18,11 @@ angular.module('Ironbane.game.components.linkedPosition', [
             LinkedPosition.prototype = Object.create(Component.prototype);
             LinkedPosition.prototype.constructor = LinkedPosition;
 
-            LinkedPosition.prototype.name = 'linkedPosition';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(LinkedPosition.prototype);
+            Object.defineProperty(LinkedPosition.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'linkedPosition'
+            });
 
             return LinkedPosition;
         }

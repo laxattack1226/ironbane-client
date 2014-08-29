@@ -35,7 +35,7 @@ angular.module('Ironbane.game.entities.Crate', [
 
                     crate.addComponent(ComponentFactory.create('mesh', [mesh]));
                     crate.addComponent(ComponentFactory.create('health', [100]));
-                    crate.addComponent(ComponentFactory.create('angularVelocity', [rng.uniform(), rng.uniform(), rng.uniform()]);
+                    crate.addComponent(ComponentFactory.create('angularVelocity', [rng.uniform(), rng.uniform(), rng.uniform()]));
 
                         return crate;
                     };

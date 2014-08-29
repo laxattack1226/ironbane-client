@@ -14,10 +14,11 @@ angular.module('Ironbane.game.components.eightWay', [
             EightWay.prototype = Object.create(Component.prototype);
             EightWay.prototype.constructor = EightWay;
 
-            EightWay.prototype.name = 'eightWay';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(EightWay.prototype);
+            Object.defineProperty(EightWay.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'eightWay'
+            });
 
             return EightWay;
         }

@@ -3,7 +3,7 @@
 angular.module('Ironbane.game.systems.SkySystem', [
     'Ironbane.game.ces.System',
     'Ironbane.game.entities.Skybox',
-    'Ironbane.game.ces.Entity',
+    'Ironbane.game.ces.entity',
     'Ironbane.game.THREE',
     'Ironbane.game.components.light',
     'Ironbane.game.entities.sun'

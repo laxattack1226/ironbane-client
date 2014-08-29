@@ -1,6 +1,4 @@
-'use strict';
-
-// another test entity
+// sky system generator
 angular.module('Ironbane.game.entities.Skybox', [
     'Ironbane.game.THREE',
     'Ironbane.game.ces.entity',
@@ -13,6 +11,8 @@ angular.module('Ironbane.game.entities.Skybox', [
         'ComponentFactory',
         'SkyboxShader',
         function (THREE, Entity, ComponentFactory, SkyboxShader) {
+            'use strict';
+
             var Skybox = function (x, y, z) {
                 var sky, geometry, mesh;
 

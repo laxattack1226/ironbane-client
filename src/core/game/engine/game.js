@@ -4,21 +4,18 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.THREE',
     'Ironbane.game.input.InputMgr',
     'Ironbane.game.ces.World',
-    'Ironbane.game.ces.Entity',
+    'Ironbane.game.ces.entity',
     'Ironbane.game.systems.Spinner',
     'Ironbane.game.entities.Crate',
-    'Ironbane.game.components.camera',
-    'Ironbane.game.components.fpsControls',
-    'Ironbane.game.components.speed',
     'Ironbane.game.systems.FPSController',
     'Ironbane.game.entities.GrassPlane',
     'Ironbane.game.systems.SkySystem',
-    'Ironbane.game.components.linkedPosition',
     'Ironbane.game.systems.PositionLinker',
     'Ironbane.game.entities.character',
     'Ironbane.game.systems.SpriteView',
     'Ironbane.game.systems.ChatBubbler',
-    'Ironbane.game.systems.SpriteAnimator'
+    'Ironbane.game.systems.SpriteAnimator',
+    'Ironbane.game.engine.component-factory'
 ])
     .factory('Game', [
         'THREE',
@@ -27,20 +24,17 @@ angular.module('Ironbane.game.engine', [
         'World',
         'Spinner',
         'Crate',
-        'Camera',
         'Entity',
-        'FPSControls',
-        'Speed',
         'FPSController',
         'GrassPlane',
         'SkySystem',
-        'LinkedPosition',
         'PositionLinker',
         'Character',
         'SpriteView',
         'ChatBubbler',
         'SpriteAnimator',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Camera, Entity, FPSControls, Speed, FPSController, GrassPlane, SkySystem, LinkedPosition, PositionLinker, Character, SpriteView, ChatBubbler, SpriteAnimator) {
+        'ComponentFactory',
+        function (THREE, $window, inputMgr, World, Spinner, Crate, Entity, FPSController, GrassPlane, SkySystem, PositionLinker, Character, SpriteView, ChatBubbler, SpriteAnimator, ComponentFactory) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -68,11 +62,11 @@ angular.module('Ironbane.game.engine', [
 
                 // TODO: move this camera stuff to a separate entity generator
                 game.camera = new Entity('MainCamera');
-                game.camera.addComponent(new Camera(new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 0.1, 4000)));
+                game.camera.addComponent(ComponentFactory.create('camera', [new THREE.PerspectiveCamera(70, viewWidth / viewHeight, 0.1, 4000)]));
                 game.camera.position.z = 40;
                 game.camera.position.y = 18;
-                game.camera.addComponent(new FPSControls());
-                game.camera.addComponent(new Speed(220));
+                game.camera.addComponent(ComponentFactory.create('fpsControls'));
+                game.camera.addComponent(ComponentFactory.create('speed', [180]));
 
                 game.world.addEntity(game.camera);
 
@@ -85,7 +79,7 @@ angular.module('Ironbane.game.engine', [
                 game.world.addEntity(new GrassPlane());
 
                 // link the entire sky system to the camera
-                game.sky.root.addComponent(new LinkedPosition(game.camera, true, false, true));
+                game.sky.root.addComponent(ComponentFactory.create('linkedPosition', [game.camera, true, false, true]));
 
                 var guy = new Character(0, 16, 0);
                 game.world.addEntity(guy);

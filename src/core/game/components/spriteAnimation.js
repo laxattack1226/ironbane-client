@@ -21,10 +21,11 @@ angular.module('Ironbane.game.components.spriteAnimation', [
             SpriteAnimation.prototype = Object.create(Component.prototype);
             SpriteAnimation.prototype.constructor = SpriteAnimation;
 
-            SpriteAnimation.prototype.name = 'spriteAnimation';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(SpriteAnimation.prototype);
+            Object.defineProperty(SpriteAnimation.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'spriteAnimation'
+            });
 
             return SpriteAnimation;
         }

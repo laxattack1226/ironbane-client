@@ -1,21 +1,26 @@
-'use strict';
-
 angular.module('Ironbane.game.components.camera', [
-    'Ironbane.game.ces.ChildEntityComponent'
+    'Ironbane.game.ces.childEntityComponent'
 ])
-    .factory('Camera', [
+    .factory('cameraComponent', [
         'ChildEntityComponent',
         function (ChildEntityComponent) {
+            'use strict';
+
             var Camera = function (camera) {
-                var component = new ChildEntityComponent();
+                ChildEntityComponent.call(this);
 
-                component.name = 'camera';
-
-                component.camera = camera;
-                component.__childEntityProperty = 'camera';
-
-                return component;
+                this.camera = camera;
+                this.__childEntityProperty = 'camera';
             };
+
+            Camera.prototype = Object.create(ChildEntityComponent.prototype);
+            Camera.prototype.constructor = Camera;
+
+            Object.defineProperty(Camera.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'camera'
+            });
 
             return Camera;
         }

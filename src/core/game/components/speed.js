@@ -1,4 +1,4 @@
-angular.module('Irobane.game.components.speed', [
+angular.module('Ironbane.game.components.speed', [
     'Ironbane.game.ces.component'
 ])
     .factory('speedComponent', [
@@ -15,10 +15,11 @@ angular.module('Irobane.game.components.speed', [
             Speed.prototype = Object.create(Component.prototype);
             Speed.prototype.constructor = Speed;
 
-            Speed.prototype.name = 'speed';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(Speed.prototype);
+            Object.defineProperty(Speed.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'speed'
+            });
 
             return Speed;
         }

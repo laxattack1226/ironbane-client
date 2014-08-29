@@ -16,10 +16,11 @@ angular.module('Ironbane.game.components.material', [
             Material.prototype = Object.create(Component.prototype);
             Material.prototype.constructor = Material;
 
-            Material.prototype.name = 'material';
-
-            // freeze the name because that's important to the ECS
-            Object.freeze(Material.prototype);
+            Object.defineProperty(Material.prototype, 'name', {
+                __proto__: null,
+                enumerable: true,
+                value: 'material'
+            });
 
             return Material;
         }
