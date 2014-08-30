@@ -17,7 +17,6 @@ angular.module('Ironbane.game.components.camera', [
             Camera.prototype.constructor = Camera;
 
             Object.defineProperty(Camera.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'camera'
             });

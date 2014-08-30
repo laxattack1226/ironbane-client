@@ -66,7 +66,7 @@ angular.module('Ironbane.game.engine', [
                 game.camera.position.z = 40;
                 game.camera.position.y = 18;
                 game.camera.addComponent(ComponentFactory.create('fpsControls'));
-                game.camera.addComponent(ComponentFactory.create('speed', [180]));
+                game.camera.addComponent(ComponentFactory.create('speed', [100]));
 
                 game.world.addEntity(game.camera);
 
@@ -81,7 +81,7 @@ angular.module('Ironbane.game.engine', [
                 // link the entire sky system to the camera
                 game.sky.root.addComponent(ComponentFactory.create('linkedPosition', [game.camera, true, false, true]));
 
-                var guy = new Character(0, 16, 0);
+                var guy = new Character(0, 2, 0);
                 game.world.addEntity(guy);
 
                 // hack! for now just a test, later actually base these on some event

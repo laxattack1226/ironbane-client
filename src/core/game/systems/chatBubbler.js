@@ -80,9 +80,10 @@ angular.module('Ironbane.game.systems.ChatBubbler', [
                 entity.addComponent(ComponentFactory.create('material', [spriteMaterial]));
 
                 var sprite = new THREE.Sprite(spriteMaterial);
-                sprite.scale.set(100, 50, 1.0);
+                //sprite.scale.set(100, 50, 1.0);
+                sprite.scale.set(2,2,2);
                 // y should be based on the target's top, for now a hack...
-                sprite.position.y = 20;
+                entity.position.y = 2.8;
                 entity.addComponent(ComponentFactory.create('sprite', [sprite]));
 
                 // TODO: add lifespan component

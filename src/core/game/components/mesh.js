@@ -17,7 +17,6 @@ angular.module('Ironbane.game.components.mesh', [
             Mesh.prototype.constructor = Mesh;
 
             Object.defineProperty(Mesh.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'mesh'
             });

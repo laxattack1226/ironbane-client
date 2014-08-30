@@ -15,7 +15,6 @@ angular.module('Ironbane.game.components.eightWay', [
             EightWay.prototype.constructor = EightWay;
 
             Object.defineProperty(EightWay.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'eightWay'
             });

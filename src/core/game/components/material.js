@@ -17,7 +17,6 @@ angular.module('Ironbane.game.components.material', [
             Material.prototype.constructor = Material;
 
             Object.defineProperty(Material.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'material'
             });

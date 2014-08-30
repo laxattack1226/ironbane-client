@@ -17,7 +17,6 @@ angular.module('Ironbane.game.components.sprite', [
             Sprite.prototype.constructor = Sprite;
 
             Object.defineProperty(Sprite.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'sprite'
             });

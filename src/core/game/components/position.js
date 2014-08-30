@@ -18,7 +18,6 @@ angular.module('Ironbane.game.components.position', [
             Position.prototype.constructor = Position;
 
             Object.defineProperty(Position.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'position'
             });

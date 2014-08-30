@@ -17,7 +17,6 @@ angular.module('Ironbane.game.components.health', [
             Health.prototype.constructor = Health;
 
             Object.defineProperty(Health.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'health'
             });

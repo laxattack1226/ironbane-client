@@ -22,7 +22,6 @@ angular.module('Ironbane.game.components.spriteAnimation', [
             SpriteAnimation.prototype.constructor = SpriteAnimation;
 
             Object.defineProperty(SpriteAnimation.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'spriteAnimation'
             });

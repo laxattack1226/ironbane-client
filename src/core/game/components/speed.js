@@ -16,7 +16,6 @@ angular.module('Ironbane.game.components.speed', [
             Speed.prototype.constructor = Speed;
 
             Object.defineProperty(Speed.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'speed'
             });

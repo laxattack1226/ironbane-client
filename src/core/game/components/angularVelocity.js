@@ -18,7 +18,6 @@ angular.module('Ironbane.game.components.angularVelocity', [
             AngularVelocity.prototype.constructor = AngularVelocity;
 
             Object.defineProperty(AngularVelocity.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'angularVelocity'
             });

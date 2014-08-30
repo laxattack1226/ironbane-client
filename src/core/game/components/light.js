@@ -17,7 +17,6 @@ angular.module('Ironbane.game.components.light', [
             Light.prototype.constructor = Light;
 
             Object.defineProperty(Light.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'light'
             });

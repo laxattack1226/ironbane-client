@@ -29,7 +29,7 @@ angular.module('Ironbane.game.entities.character', [
 
                 sprite = new THREE.Sprite(material);
                 // sprites by default are tiny (0.5)
-                sprite.scale.set(30, 30, 30); // TODO: figure out correct scale
+                sprite.scale.set(2, 2, 2); // TODO: figure out correct scale
                 sprite.position.set(x, y, z);
 
                 entity.addComponent(ComponentFactory.create('material', [material]));

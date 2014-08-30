@@ -15,7 +15,6 @@ angular.module('Ironbane.game.components.fpsControls', [
             FPSControls.prototype.constructor = FPSControls;
 
             Object.defineProperty(FPSControls.prototype, 'name', {
-                __proto__: null,
                 enumerable: true,
                 value: 'fpsControls'
             });
