@@ -1,8 +1,7 @@
-
-angular.module('Ironbane.game.systems.SpriteAnimator', [
+angular.module('Ironbane.game.systems.sprite-animator', [
     'Ironbane.game.ces.System'
 ])
-    .service('SpriteAnimator', [
+    .service('SpriteAnimatorSystem', [
         'System',
         function (System) {
             'use strict';
@@ -12,13 +11,12 @@ angular.module('Ironbane.game.systems.SpriteAnimator', [
             };
 
             SpriteAnimator.prototype = Object.create(System.prototype);
-
             SpriteAnimator.prototype.constructor = SpriteAnimator;
 
             SpriteAnimator.prototype.update = function (dt) {
                 var entities = this.world.getEntities('sprite', 'spriteAnimation');
 
-                entities.forEach(function(entity) {
+                entities.forEach(function (entity) {
                     var sprite = entity.getComponent('sprite').sprite,
                         anim = entity.getComponent('spriteAnimation');
 
@@ -28,7 +26,7 @@ angular.module('Ironbane.game.systems.SpriteAnimator', [
                     // y is handled by sprite view currently (TODO: support arbitrary frames)
                     sprite.material.map.offset.x = anim.frames[anim.currentFrame] / anim.frames.length;
 
-                    if(anim.cyclic && anim.currentFrame === anim.frames.length - 1) {
+                    if (anim.cyclic && anim.currentFrame === anim.frames.length - 1) {
                         anim.frames = anim.frames.reverse();
                     }
                 });

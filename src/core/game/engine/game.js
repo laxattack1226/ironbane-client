@@ -5,36 +5,24 @@ angular.module('Ironbane.game.engine', [
     'Ironbane.game.input.InputMgr',
     'Ironbane.game.ces.World',
     'Ironbane.game.ces.entity',
-    'Ironbane.game.systems.Spinner',
     'Ironbane.game.entities.Crate',
-    'Ironbane.game.systems.FPSController',
     'Ironbane.game.entities.GrassPlane',
-    'Ironbane.game.systems.SkySystem',
-    'Ironbane.game.systems.PositionLinker',
     'Ironbane.game.entities.character',
-    'Ironbane.game.systems.SpriteView',
-    'Ironbane.game.systems.ChatBubbler',
-    'Ironbane.game.systems.SpriteAnimator',
-    'Ironbane.game.engine.component-factory'
+    'Ironbane.game.engine.component-factory',
+    'Ironbane.game.engine.system-factory'
 ])
     .factory('Game', [
         'THREE',
         '$window',
         'InputMgr',
         'World',
-        'Spinner',
         'Crate',
         'Entity',
-        'FPSController',
         'GrassPlane',
-        'SkySystem',
-        'PositionLinker',
         'Character',
-        'SpriteView',
-        'ChatBubbler',
-        'SpriteAnimator',
         'ComponentFactory',
-        function (THREE, $window, inputMgr, World, Spinner, Crate, Entity, FPSController, GrassPlane, SkySystem, PositionLinker, Character, SpriteView, ChatBubbler, SpriteAnimator, ComponentFactory) {
+        'SystemFactory',
+        function (THREE, $window, inputMgr, World, Crate, Entity, GrassPlane, Character, ComponentFactory, SystemFactory) {
             var Game = function () {
                 var game = this;
                 // temp hack for quick debug
@@ -42,12 +30,12 @@ angular.module('Ironbane.game.engine', [
 
                 // entity system world
                 game.world = new World();
-                game.world.addSystem(Spinner);
-                game.world.addSystem(new FPSController());
-                game.world.addSystem(PositionLinker);
-                game.world.addSystem(new SpriteAnimator());
+                game.world.addSystem(SystemFactory.create('Spinner'));
+                game.world.addSystem(SystemFactory.create('FPSController'));
+                game.world.addSystem(SystemFactory.create('PositionLinker'));
+                game.world.addSystem(SystemFactory.create('SpriteAnimator'));
 
-                game.sky = new SkySystem();
+                game.sky = SystemFactory.create('Sky');
                 game.world.addSystem(game.sky);
 
                 // debug reference, prolly remove this
@@ -69,8 +57,7 @@ angular.module('Ironbane.game.engine', [
                 game.camera.addComponent(ComponentFactory.create('speed', [100]));
 
                 game.world.addEntity(game.camera);
-
-                game.world.addSystem(new SpriteView(game.camera));
+                game.world.addSystem(SystemFactory.create('SpriteView', [game.camera]));
 
                 // add 2 crates for now (test data)
                 game.world.addEntity(new Crate(-25, 20, 0));
@@ -85,7 +72,7 @@ angular.module('Ironbane.game.engine', [
                 game.world.addEntity(guy);
 
                 // hack! for now just a test, later actually base these on some event
-                var bubbler = new ChatBubbler();
+                var bubbler = SystemFactory.create('ChatBubbler');
                 bubbler.create(guy, 'Welcome to Ironbane 2: The Revival :)');
 
 

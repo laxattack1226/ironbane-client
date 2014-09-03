@@ -1,8 +1,8 @@
-// just a silly test system
-angular.module('Ironbane.game.systems.SpriteView', [
+// renders 8-way sprites based on who is looking at them to simulate 3d
+angular.module('Ironbane.game.systems.sprite-view', [
     'Ironbane.game.ces.System'
 ])
-    .service('SpriteView', [
+    .service('SpriteViewSystem', [
         'System',
         function (System) {
             'use strict';

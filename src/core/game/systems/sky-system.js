@@ -1,6 +1,4 @@
-'use strict';
-
-angular.module('Ironbane.game.systems.SkySystem', [
+angular.module('Ironbane.game.systems.sky-system', [
     'Ironbane.game.ces.System',
     'Ironbane.game.entities.Skybox',
     'Ironbane.game.ces.entity',
@@ -19,6 +17,8 @@ angular.module('Ironbane.game.systems.SkySystem', [
         'Sun',
         'GAME_DAY_LENGTH',
         function (System, Entity, Skybox, $log, THREE, Light, Sun, GAME_DAY_LENGTH) {
+            'use strict';
+
             var sunDistance = 1950;
 
             var SkySystem = function () {

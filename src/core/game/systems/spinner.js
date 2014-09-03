@@ -1,16 +1,21 @@
-'use strict';
-
 // just a silly test system
-angular.module('Ironbane.game.systems.Spinner', [
+angular.module('Ironbane.game.systems.spinner', [
     'Ironbane.game.ces.System'
 ])
-    .service('Spinner', [
+    .service('SpinnerSystem', [
         'System',
         function (System) {
-            var spinner = new System();
+            'use strict';
+
+            var Spinner = function () {
+                System.call(this);
+            };
+
+            Spinner.prototype = Object.create(System.prototype);
+            Spinner.prototype.constructor = Spinner;
 
             // override the system default update
-            spinner.update = function (dt) {
+            Spinner.prototype.update = function (dt) {
                 var entities = this.world.getEntities('angularVelocity');
 
                 entities.forEach(function (entity) {
@@ -22,6 +27,6 @@ angular.module('Ironbane.game.systems.Spinner', [
                 });
             };
 
-            return spinner;
+            return Spinner;
         }
     ]);

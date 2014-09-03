@@ -1,18 +1,17 @@
-'use strict';
-
-angular.module('Ironbane.game.systems.ChatBubbler', [
+angular.module('Ironbane.game.systems.chat-bubbler', [
     'Ironbane.game.ces.System',
     'Ironbane.game.ces.entity',
     'Ironbane.game.engine.component-factory',
     'Ironbane.game.THREE'
 ])
-    .service('ChatBubbler', [
+    .service('ChatBubblerSystem', [
         'System',
         '$window',
         'Entity',
         'ComponentFactory',
         'THREE',
         function (System, $window, Entity, ComponentFactory, THREE) {
+            'use strict';
 
             function createBubble(ctx, x, y, w, h, r) {
                 ctx.beginPath();

@@ -1,32 +1,37 @@
-'use strict';
-
-angular.module('Ironbane.game.systems.PositionLinker', [
+angular.module('Ironbane.game.systems.position-linker', [
     'Ironbane.game.ces.System'
 ])
-    .service('PositionLinker', [
+    .service('PositionLinkerSystem', [
         'System',
         function (System) {
-            var linker = new System();
+            'use strict';
+
+            var PositionLinker = function () {
+                System.call(this);
+            };
+
+            PositionLinker.prototype = Object.create(System.prototype);
+            PositionLinker.prototype.constructor = PositionLinker;
 
             // override the system default update
-            linker.update = function (dt) {
+            PositionLinker.prototype.update = function (dt) {
                 var entities = this.world.getEntities('linkedPosition');
 
                 entities.forEach(function (entity) {
                     var link = entity.getComponent('linkedPosition');
 
-                    if(link.x) {
+                    if (link.x) {
                         entity.position.x = link.target.position.x;
                     }
-                    if(link.y) {
+                    if (link.y) {
                         entity.position.y = link.target.position.y;
                     }
-                    if(link.z) {
+                    if (link.z) {
                         entity.position.z = link.target.position.z;
                     }
                 });
             };
 
-            return linker;
+            return PositionLinker;
         }
     ]);

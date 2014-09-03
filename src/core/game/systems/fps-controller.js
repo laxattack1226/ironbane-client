@@ -1,14 +1,14 @@
-'use strict';
-
-// just a silly test system
-angular.module('Ironbane.game.systems.FPSController', [
+// controls for first person
+angular.module('Ironbane.game.systems.fps-controller', [
     'Ironbane.game.ces.System',
     'Ironbane.game.input.InputMgr'
 ])
-    .service('FPSController', [
+    .service('FPSControllerSystem', [
         'System',
         'InputMgr',
         function (System, inputMgr) {
+            'use strict';
+
             var defaultConfig = {
                 moveForward: 'w',
                 moveBackward: 's',
