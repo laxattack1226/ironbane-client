@@ -1,4 +1,0 @@
-git add slime_red.png
-git commit -m 'add png file'
-git remote add origin https://github.com/slime_red.git
-git push -u origin master
