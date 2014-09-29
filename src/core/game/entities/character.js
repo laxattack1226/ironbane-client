@@ -36,6 +36,7 @@ angular.module('Ironbane.game.entities.character', [
                 entity.addComponent(ComponentFactory.create('sprite', [sprite]));
 
                 // for the moment, we only have one, and we'll just hack it in
+                entity.addComponent(ComponentFactory.create('spriteAnimation', ['walk', [0, 4, 0, 4, 0, 4], 0.3, true, true]));
                 entity.addComponent(ComponentFactory.create('spriteAnimation', ['walk', [0, 4, 0, 4, 0, 4], 0.2, true, true]));
 
                 // 8-way sprite
