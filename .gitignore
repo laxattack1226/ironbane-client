@@ -3,6 +3,6 @@ bower_components/
 dist/
 npm-debug.log
 public/
-.Rhistory
-.Rapp.history
+*.Rhistory*
+*.Rapp.history*
 *.sublime*
