@@ -3,6 +3,7 @@
 ## Installation
 * Install Node: ``http://nodejs.org/``
 * run ``npm install -g angus``
+* run ``cd ~/documents/ironbane-client/``
 * run ``angus dev``
 * open ``http://localhost:9000/``
 
