@@ -34,8 +34,8 @@ angular.module('Ironbane.game.entities.GrassPlane', [
                 texture = THREE.ImageUtils.loadTexture('assets/textures/lorez_grass.png');
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.x = settings.width / 16; // img size
-                texture.repeat.y = settings.height / 16;
+                texture.repeat.x = settings.width / 6; // img size
+                texture.repeat.y = settings.height / 6;
                 texture.anisotropy = settings.anisotropy;
                 texture.magFilter = THREE.NearestFilter;
                 texture.minFilter = THREE.NearestMipMapLinearFilter;

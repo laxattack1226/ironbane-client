@@ -52,7 +52,7 @@ angular.module('Ironbane.game.systems.chat-bubbler', [
                 var lineHeight = 1.4;
                 var fontsize = 18;
                 var fontunit = 'px';
-                var fontfamily = 'Arial Black';
+                var fontfamily = 'Helvetica';
 
                 ctx.font = fontsize + fontunit + ' ' + fontfamily;
                 var metrics = ctx.measureText(message);
