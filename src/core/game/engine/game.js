@@ -59,16 +59,38 @@ angular.module('Ironbane.game.engine', [
                 game.world.addEntity(game.camera);
                 game.world.addSystem(SystemFactory.create('SpriteView', [game.camera]));
 
-                // add 2 crates for now (test data)
-                game.world.addEntity(new Crate(-25, 20, 0));
-                game.world.addEntity(new Crate(25, 20, 0));
+                // add crates for now (test data)
+                game.world.addEntity(new Crate(0, 2.5, -10));
+                game.world.addEntity(new Crate(5, 2.5, -10));
+                game.world.addEntity(new Crate(-5, 2.5, -10));
+                game.world.addEntity(new Crate(-10, 2.5, -10));
+                game.world.addEntity(new Crate(10, 2.5, -10));
+                game.world.addEntity(new Crate(10, 2.5, -5));
+                game.world.addEntity(new Crate(-10, 2.5, -5));
+                game.world.addEntity(new Crate(10, 2.5, 0));
+                game.world.addEntity(new Crate(-10, 2.5, 0));
+                game.world.addEntity(new Crate(0, 7.5, -10));
+                game.world.addEntity(new Crate(5, 7.5, -10));
+                game.world.addEntity(new Crate(-5, 7.5, -10));
+                game.world.addEntity(new Crate(-10, 7.5, -10));
+                game.world.addEntity(new Crate(10, 7.5, -10));
+                game.world.addEntity(new Crate(10, 7.5, -5));
+                game.world.addEntity(new Crate(-10, 7.5, -5));
+                game.world.addEntity(new Crate(10, 7.5, 0));
+                game.world.addEntity(new Crate(-10, 7.5, 0));
+                game.world.addEntity(new Crate(0, -2.4, 0));
+                game.world.addEntity(new Crate(0, -2.4, -5));
+                game.world.addEntity(new Crate(5, -2.4, 0));
+                game.world.addEntity(new Crate(-5, -2.4, 0));
+                game.world.addEntity(new Crate(5, -2.4, -5));
+                game.world.addEntity(new Crate(-5, -2.4, -5));
 
                 game.world.addEntity(new GrassPlane());
 
                 // link the entire sky system to the camera
                 game.sky.root.addComponent(ComponentFactory.create('linkedPosition', [game.camera, true, false, true]));
 
-                var guy = new Character(0, 2, 0);
+                var guy = new Character(0, 1, 0);
                 game.world.addEntity(guy);
 
                 // hack! for now just a test, later actually base these on some event
