@@ -31,19 +31,19 @@ angular.module('Ironbane.game.systems.sprite-view', [
                 var index = 1;
 
                 if (result >= 0.39 && result <= 1.17) {
-                    index = 8;
+                    index = 2;
                 } else if (result > 1.17 && result <= 1.96) {
-                    index = 7;
+                    index = 3;
                 } else if (result > 1.96 && result <= 2.74) {
-                    index = 6;
+                    index = 4;
                 } else if (result > 2.74 && result <= 3.53) {
                     index = 5;
                 } else if (result > 3.53 && result <= 4.31) {
-                    index = 4;
+                    index = 6;
                 } else if (result > 4.31 && result <= 5.10) {
-                    index = 3;
+                    index = 7;
                 } else if (result > 5.10 && result <= 5.89) {
-                    index = 2;
+                    index = 0;
                 } else {
                     index = 1;
                 }
