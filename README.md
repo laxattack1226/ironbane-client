@@ -2,13 +2,14 @@
 
 ## Installation
 * Install Node: ``http://nodejs.org/``
+* run ``npm install -g bower``
 * run ``npm install -g angus``
 * run ``cd ~/documents/ironbane-client/``
 * run ``angus dev``
 * open ``http://localhost:9000/``
 
 **NOTE**
-If you cannot run ``angus dev`` in your console window, you need to use the ``root`` account by doing ``sudo angus dev``. It will ask for the password. The password should be ``*`` unless you have changed it. If it doesn't accept the password, go to these links:
+If you cannot run ``npm install -g bower``, ``npm install -g angus``, or ``angus dev`` in your console window, you need to use the ``root`` account by running ``sudo npm install -g bower``, ``sudo npm install -g angus``, and ``sudo angus dev``. When running ``sudo``, the console will ask for the password. The password should be ``*`` unless you have changed it. If it doesn't accept the password, go to these links:
 
 *Mac:* ``http://support.apple.com/kb/PH11331``
 
